@@ -1,0 +1,180 @@
+# AUTHOR: Jay Sarna
+# PURPOSE: Setup VM/Container to run this application. Installs apps such as Docker and Azure CLI.
+# HOW TO USE ON VM:
+# sudo apt install -y ansible
+# sudo ansible-playbook -i "localhost," -c local --become --ask-become-pass vm-setup-playbook.yml
+
+- name: Install Docker, Node 20, npm, Composer, Git on Kali
+  hosts: localhost
+  become: yes
+
+  tasks:
+
+    # -----------------------------
+    # Docker Engine
+    # -----------------------------
+    - name: Remove old Docker versions
+      apt:
+        name:
+          - docker
+          - docker-engine
+          - docker.io
+          - containerd
+          - runc
+        state: absent
+        purge: yes
+
+    - name: Install dependencies for Docker repo
+      apt:
+        name:
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+        update_cache: yes
+
+    - name: Add Docker GPG key
+      ansible.builtin.shell: |
+        install -m 0755 -d /etc/apt/keyrings
+        curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.gpg
+        chmod a+r /etc/apt/keyrings/docker.gpg
+
+    - name: Add Docker repository
+      copy:
+        dest: /etc/apt/sources.list.d/docker.list
+        content: |
+          deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable
+
+    - name: Install Docker Engine
+      apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
+        update_cache: yes
+
+    - name: Enable and start Docker
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+
+
+    - name: Add current user to docker group
+      user:
+        name: "{{ lookup('env', 'USER') }}"
+        groups: docker
+        append: yes
+
+    - name: Notify user to re-login for docker group changes
+      debug:
+        msg: "You must log out and log back in for docker group membership to take effect."
+
+    # -----------------------------
+    # Node.js 20 + npm (modern method)
+    # -----------------------------
+    - name: Create keyrings directory
+      file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+
+    - name: Download NodeSource GPG key
+      get_url:
+        url: https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key
+        dest: /etc/apt/keyrings/nodesource.gpg
+        mode: '0644'
+
+    - name: Add NodeSource Node 20 repository
+      copy:
+        dest: /etc/apt/sources.list.d/nodesource.list
+        content: |
+          deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main
+
+    # NEW: Pin NodeSource repo so Kali prefers it over local mirrors
+    - name: Pin NodeSource repository priority
+      copy:
+        dest: /etc/apt/preferences.d/nodesource
+        content: |
+          Package: *
+          Pin: origin deb.nodesource.com
+          Pin-Priority: 1001
+
+    # UPDATED: Enforce the NodeSource installation & catch missing npm components
+    - name: Install Node.js 20 and npm components
+      apt:
+        name: 
+          - nodejs
+          - npm
+        state: present
+        update_cache: yes
+        force: yes
+    # -----------------------------
+    # Composer
+    # -----------------------------
+    - name: Download Composer installer
+      get_url:
+        url: https://getcomposer.org/installer
+        dest: /tmp/composer-setup.php
+
+    - name: Install Composer globally
+      shell: php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+      args:
+        creates: /usr/local/bin/composer
+
+    # -----------------------------
+    # Git
+    # -----------------------------
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+
+    # -----------------------------
+    # Azure CLI Installation (Debian Bookworm Core Method)
+    # -----------------------------
+    - name: Install Azure CLI prerequisites
+      apt:
+        name:
+          - curl
+          - apt-transport-https
+          - lsb-release
+          - gnupg
+        state: present
+        update_cache: yes
+
+    - name: Ensure trusted.gpg.d folder exists
+      file:
+        path: /etc/apt/trusted.gpg.d
+        state: directory
+        mode: '0755'
+
+    - name: Download and install Microsoft GPG signing key
+      get_url:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        dest: /tmp/microsoft.asc
+        mode: '0644'
+
+    - name: De-armor Microsoft GPG key for APT
+      command: gpg --dearmor -o /etc/apt/trusted.gpg.d/microsoft.gpg /tmp/microsoft.asc
+      args:
+        creates: /etc/apt/trusted.gpg.d/microsoft.gpg
+
+    - name: Add Microsoft Azure CLI repository
+      copy:
+        dest: /etc/apt/sources.list.d/azure-cli.list
+        content: |
+          deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ bookworm main
+        mode: '0644'
+
+    - name: Update apt cache and install Azure CLI
+      apt:
+        name: azure-cli
+        state: present
+        update_cache: yes
+
+
