@@ -276,5 +276,9 @@ docker exec -it systematicdefence-app sh
 php artisan migrate
 
 ## Kali linux 2.10
-21 May 10:47 PM: 
+21 May 2026 10:47 PM: 
 Preparation for merge with GitHub repository.
+
+## Kali linux 2.11
+22 May 2026 6 AM: 
+Laravel application Functional on docker containers. See Cookbook>DockeriseApplication.md till Section 5 'STEPS TO SETUP APP ON DOCKER'
