@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - [Concordion Specification for 'CheckPageText']</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<div class="breadcrumbs">
+<a class="breadcrumb" href="../index.html">all</a> &gt; 
+<a class="breadcrumb" href="index.html">com.CheckPageTextTest</a> &gt; 
+<span class="breadcrumb">[Concordion Specification for 'CheckPageText']</span>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="successGroup" href="#">Gradle Test Run :test</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Gradle Test Run :test</h2>
+<h1>[Concordion Specification for 'CheckPageText']</h1>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="" href="#">summary</a>
+</li>
+<li>
+<a class="" href="#">standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>summary</h2>
+<div>
+<div class="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>skipped</p>
+</div>
+</td>
+<td>
+<div class="infoBox duration">
+<div class="counter">0.546s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="tab">
+<h2>standard output</h2>
+<span class="code">
+<pre id="root-0-test-stdout-[Concordion Specification for 'CheckPageText']">DEBUG IP = http://127.0.0.1:8000/resilience
+DEBUG FINAL IP = http://127.0.0.1:8000/resilience
+DEBUG testPhrase = ENGINEERING
+=== RESPONSE START ===
+&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset=&quot;UTF-8&quot;&gt;    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;    &lt;title&gt;Systematic Defence Blog&lt;/title&gt;        &lt;script type=&quot;module&quot; src=&quot;http://[::1]:5173/@vite/client&quot;&gt;&lt;/script&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;http://[::1]:5173/resources/css/app.css&quot; /&gt;&lt;script type=&quot;module&quot; src=&quot;http://[::1]:5173/resources/js/app.js&quot;&gt;&lt;/script&gt;&lt;script id=&quot;browser-logger-active&quot;&gt;(function() {    const ENDPOINT = 'http://127.0.0.1:8000/_boost/browser-logs';    const logQueue = [];    let flushTimeout = null;    console.log('ðŸ”? Browser logger active (MCP server detected). Posting to: ' + ENDPOINT);    // Store original console methods    const originalConsole = {        log: console.log,        info: console.info,        error: console.error,        warn: console.warn,        table: console.table    };    // Helper to safely stringify values    function safeStringify(obj) {        const seen = new WeakSet();        return JSON.stringify(obj, (key, value) =&gt; {            if (typeof value === 'object' &amp;&amp; value !== null) {                if (seen.has(value)) return '[Circular]';                seen.add(value);            }            if (value instanceof Error) {                return {                    name: value.name,                    message: value.message,                    stack: value.stack                };            }            return value;        });    }    // Batch and send logs    function flushLogs() {        if (logQueue.length === 0) return;        const batch = logQueue.splice(0, logQueue.length);        fetch(ENDPOINT, {            method: 'POST',            headers: {                'Content-Type': 'application/json',                'X-Requested-With': 'XMLHttpRequest'            },            body: JSON.stringify({ logs: batch })        }).catch(err =&gt; {            // Silently fail to avoid infinite loops            originalConsole.error('Failed to send logs:', err);        });    }    // Debounced flush (100ms)    function scheduleFlush() {        if (flushTimeout) clearTimeout(flushTimeout);        flushTimeout = setTimeout(flushLogs, 100);    }    // Intercept console methods    ['log', 'info', 'error', 'warn', 'table'].forEach(method =&gt; {        console[method] = function(...args) {            // Call original method            originalConsole[method].apply(console, args);            // Capture log data            try {                logQueue.push({                    type: method,                    timestamp: new Date().toISOString(),                    data: args.map(arg =&gt; {                        try {                            return typeof arg === 'object' ? JSON.parse(safeStringify(arg)) : arg;                        } catch (e) {                            return String(arg);                        }                    }),                    url: window.location.href,                    userAgent: navigator.userAgent                });                scheduleFlush();            } catch (e) {                // Fail silently            }        };    });    // Global error handlers for uncaught errors    const originalOnError = window.onerror;    window.onerror = function boostErrorHandler(errorMsg, url, lineNumber, colNumber, error) {        try {            logQueue.push({                type: 'uncaught_error',                timestamp: new Date().toISOString(),                data: [{                    message: errorMsg,                    filename: url,                    lineno: lineNumber,                    colno: colNumber,                    error: error ? {                        name: error.name,                        message: error.message,                        stack: error.stack                    } : null                }],                url: window.location.href,                userAgent: navigator.userAgent            });            scheduleFlush();        } catch (e) {            // Fail silently        }        // Call original handler if it exists        if (originalOnError &amp;&amp; typeof originalOnError === 'function') {            return originalOnError(errorMsg, url, lineNumber, colNumber, error);        }        // Let the error continue to propagate        return false;    }    window.addEventListener('error', (event) =&gt; {        try {            logQueue.push({                type: 'window_error',                timestamp: new Date().toISOString(),                data: [{                    message: event.message,                    filename: event.filename,                    lineno: event.lineno,                    colno: event.colno,                    error: event.error ? {                        name: event.error.name,                        message: event.error.message,                        stack: event.error.stack                    } : null                }],                url: window.location.href,                userAgent: navigator.userAgent            });            scheduleFlush();        } catch (e) {            // Fail silently        }        // Let the error continue to propagate        return false;    });    window.addEventListener('unhandledrejection', (event) =&gt; {        try {            logQueue.push({                type: 'error',                timestamp: new Date().toISOString(),                data: [{                    message: 'Unhandled Promise Rejection',                    reason: event.reason instanceof Error ? {                        name: event.reason.name,                        message: event.reason.message,                        stack: event.reason.stack                    } : event.reason                }],                url: window.location.href,                userAgent: navigator.userAgent            });            scheduleFlush();        } catch (e) {            // Fail silently        }        // Let the rejection continue to propagate        return false;    });    // Flush on page unload    window.addEventListener('beforeunload', () =&gt; {        if (logQueue.length &gt; 0) {            navigator.sendBeacon(ENDPOINT, JSON.stringify({ logs: logQueue }));        }    });})();&lt;/script&gt;&lt;/head&gt;&lt;body&gt;        &lt;main&gt;            &lt;h1&gt;ENGINEERING IS ABOUT SUSTAINABLE DEVELOPMENT- SCIENCE AND TECHNOLOGY THAT HARMONISES BODY, MIND AND SOUL  - â€˜TEMPLATE FOR ENTRY INTO DEVSECOPS WITH TEST DRIVEN DEVELOPMENTâ€™     &lt;br&gt;==============================&lt;/h1&gt;&lt;div class=&quot;auth-box-main&quot;&gt;	&lt;div style=&quot;text-align: center;&quot;&gt;    &lt;h2 id=&quot;11annexa&quot;&gt;11.0 ANNEX C - JOURNAL ENTRY 02 MAY 2026: THE PENNY DROPS FOR FAMILY &lt;/h2&gt;&lt;p&gt;&lt;i id=&quot;mm8pennydrops&quot; style=&quot;text-align: center;&quot;&gt; Item 8: The penny drops for my family.&lt;/i&gt; &lt;img src=&quot;http://127.0.0.1:8000/images/penny-drops.jpg&quot; class=&quot;auth-img&quot; alt=&quot;Journal entry Saturday 02 May 2026&quot;&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;auth-box-main&quot;&gt;                &lt;h2 id=&quot;12references&quot;&gt;12.0 REFERENCES&lt;/h2&gt;    &lt;p style=&quot;text-align: left;&quot;&gt;        1. Bogan, C.(2026).Very Brief History of Synthetic Media. Behind the AI MASK- Protecting your business from deepfakes. Published by John Wiley &amp; Sons, Inc., Hoboken, New Jersey.        &lt;br&gt;&lt;br&gt;2. His Holiness Radhanath Swami.(2025, Dec, 15).YouTube- Technology for the Soul | Radhanath Swami | Massachusetts Institute of Technology. https://youtu.be/UiL8zUp54ow?si=DTHKmBTDZ5GoomGd. Last  Accessed 26 March 2026.                   &lt;br&gt;&lt;br&gt;3. His Holiness Radhanath Swami.(2019, Aug, 9). YouTube- Transforming Our Struggles Into Strength | His Holiness Radhanath Swami. https://www.youtube.com/watch?v=abmsniEmfh0. Last  Accessed 26 March 2026.                   &lt;br&gt;&lt;br&gt;4. International Organization for Standardization (ISO)/ International Electrotechnical Commission (IEC)/ Institute of Electrical and Electrical Engineers (IEEE). (2021). ISO/IEC/IEEE 29119 6:2021(E): Software and systems engineering â€” Software testing â€” Part 6:  (all parts) in agile life cycles. Published by ISO.                   &lt;br&gt;&lt;br&gt;5. O'Donnell, M. (2010). Trade Me: The inside story. Phantom House Books                    &lt;br&gt;&lt;br&gt;6. Mendez II, M.(2025, Jul, 19).  Out.com - Barack Obama explains why he thinks all men need queer people in their lives. https://www.out.com/news/barack-obama-gay-friends.Last Accessed 05 April 2026.        &lt;br&gt;&lt;br&gt;13. Obama, B. (2009, April, 06). United States Government- The White House President Barrack Obama- Remarks by the President at Cairo University, 6-04-09- REMARKS BY THE PRESIDENT ON A NEW BEGINNING. https://obamawhitehouse.archives.gov/the-press-office/remarks-president-cairo-university-6-04-09. Last Accessed 05 April 2026.                    &lt;br&gt;&lt;br&gt;15. Robertson, J. N., Jones, P. W. (2022). New Zealand Film Commission | Te Tumu Whakaata Taonga -Whina. https://www.nzfilm.co.nz/films/whina. Last accessed 02 February 2026.                    &lt;br&gt;&lt;br&gt;17. Hemi-Morehouse, S., Hill, D.(2025, August, 12). Mother of the Nation: Whina Cooper- Whina Cooper and the Long Walk for Justice. Published by Penguin Books.                    &lt;br&gt;&lt;br&gt;19. Hemi-Morehouse, S., Hill, D.(2025, August, 12). Te Whaea o te Motu- Whina Cooper me te HÄ«koi roa mÅ? te Manatika. Translated into te reo MÄ?ori by Morrison, S. Published by Penguin Books.                    &lt;br&gt;&lt;br&gt;11.0 BBC News.(2026, April, 4). AI Decoded - Episode 10: Are humans useless in the AI workspace?. https://www.bbc.co.uk/programmes/m002bc0j                &lt;br&gt;&lt;br&gt;12.0 Rashid, R.(2026, March, 16). The Guardian- Oscars 2026- South Korea celebrates â€˜miracleâ€™ Oscar wins for KPop Demon Hunters. https://www.theguardian.com/film/2026/mar/16/kpop-demon-hunters-oscar-wins-golden-performance. Last Accessed: 30 April 2026                &lt;br&gt;&lt;br&gt;13.0 Ansari, A. (1978). Kwaja Abdullah Ansari: The Invocations (Munajat) (W. M. Thackston, Trans.). Paulist Press. (Original work published c. 1088).                &lt;br&gt;&lt;br&gt;14.0 Okoth-Obbo, V. (2020, August, 2). United Nations Development Programme (UNDP)- Home &gt; Iraq &gt; Stories &gt; Six Years After Sinjar Massacre, Support and Services are Vital for Returning Yazidis.https://www.undp.org/iraq/stories/six-years-after-sinjar-massacre-support-and-services-are-vital-returning-yazidis. Last Accessed: 05 April 2026                &lt;br&gt;&lt;br&gt;15.0 IEEE- Advancing Technology for Humanity. (2026). IEEE Code of Ethics. https://www.ieee.org/about/corporate/governance/p7-8. Last accessed 02 February 2026                &lt;br&gt;&lt;br&gt;16.0  [Hindi Mahabharata] à¤¸à¤¾à¤¹à¤¿à¤¤à¥?à¤¯à¤¾à¤šà¤¾à¤°à¥?à¤¯ à¤ªà¤‚à¤¡à¤¿à¤¤ à¤°à¤¾à¤®à¤¨à¤¾à¤°à¤¾à¤¯à¤£ à¤¦à¤¤à¥?à¤¤ à¤¶à¤¾à¤¸à¥?à¤¤à¥?à¤°à¥€ à¤ªà¤¾à¤‚à¤¡à¥‡à¤¯ 'à¤°à¤¾à¤®'.(2024). à¤…à¤§à¥?à¤¯à¤¾à¤¯ 313 - à¤¯à¤•à¥?à¤· à¤”à¤° à¤¯à¥?à¤§à¤¿à¤·à¥?à¤ à¤¿à¤° à¤•à¤¾ à¤ªà¥?à¤°à¤¶à¥?à¤¨à¥‹à¤¤à¥?à¤¤à¤° à¤”à¤° à¤¯à¥?à¤§à¤¿à¤·à¥?à¤ à¤¿à¤° à¤•à¥‡ à¤‰à¤¤à¥?à¤¤à¤° à¤¸à¥‡ à¤¸à¤‚à¤¤à¥?à¤·à¥?à¤Ÿ à¤¹à¥?à¤? à¤¯à¤•à¥?à¤· à¤•à¤¾ à¤šà¤°à¤£à¥‹à¤‚ à¤­à¤¾à¤‡à¤¯à¥‹à¤‚ à¤•à¥‹ à¤œà¥€à¤µà¤¿à¤¤ à¤¹à¥‹à¤¨à¥‡ à¤•à¤¾ à¤µà¤°à¤¦à¤¾à¤¨ à¤¦à¥‡à¤¨à¤¾. à¤¶à¥?à¤°à¥€à¤®à¤¨ à¤®à¤¹à¤°à¥?à¤·à¤¿ à¤µà¥‡à¤¦à¤µà¥?à¤¯à¤¾à¤¸ à¤ªà¥?à¤°à¤£à¥€à¤¤ à¤®à¤¹à¤¾à¤­à¤¾à¤°à¤¤ (à¤¦à¥?à¤µà¤¿à¤¤à¥€à¤¯ à¤–à¤‚à¤¡) - à¤µà¤¨à¤ªà¤°à¥?à¤µ à¤”à¤° à¤µà¤¿à¤°à¤¾à¤Ÿà¤ªà¤°à¥?à¤µ, à¤¸à¤šà¤¿à¤¤à¥?à¤°, à¤¸à¤°à¤² à¤¹à¤¿à¤¨à¥?à¤¦à¥€-à¤…à¤¨à¥?à¤µà¤¾à¤¦à¤¸à¤¹à¤¿à¤¤. à¤ªà¥?à¤°à¤•à¤¾à¤¶à¤• à¤?à¤µà¤‚ à¤¬à¥?à¤¦à¥?à¤°à¤•- à¤—à¥€à¤¤à¤¾ à¤ªà¥?à¤°à¥‡à¤¸ à¤—à¥‹à¤°à¤–à¤ªà¥?à¤°, à¤—à¥‹à¤¬à¤¿à¤‚à¤¦à¤­à¤µà¤¨-à¤•à¤¾à¤°à¥?à¤¯à¤¾à¤²à¤¯, à¤•à¥‹à¤²à¤•à¤¾à¤¤à¤¾ à¤•à¤¾ à¤¸à¤‚à¤¸à¥?à¤¥à¤¾à¤¨à¤¾à¤¨ Code 33. à¤®à¥‚à¤² à¤¸à¤šà¥?à¤šà¥€ à¤•à¤¹à¤¾à¤¨à¥€ 3102 à¤ˆà¤¸à¤¾ à¤ªà¥‚à¤°à¥?à¤µ à¤®à¥‡à¤‚ à¤ªà¥?à¤°à¤•à¤¾à¤¶à¤¿à¤¤ à¤¹à¥?à¤ˆ (à¤¦à¥?à¤°à¤¿à¤•à¤ªà¤‚à¤šà¤¾à¤‚à¤— à¤•à¥‡ à¤…à¤¨à¥?à¤¸à¤¾à¤°)                 &lt;br&gt;&lt;br&gt;17.0 Plato.(360 B.C.E). Book III. Massachusetts Institute of Technology Classics- The Republic. Translated by Jowett, B. https://classics.mit.edu/Plato/republic.4.iii.html . Last Accessed 9 April 2026                &lt;br&gt;&lt;br&gt;18.0 Plato.(360 B.C.E). Book V. Massachusetts Institute of Technology Classics- The Republic. Translated by Jowett, B. https://classics.mit.edu/Plato/republic.6.v.html . Last Accessed 9 April 2026                &lt;br&gt;&lt;br&gt;19.0 vedictreasure.official.(2025, April, 12). Instagram- Tabla master ustad Zakir Hussain speaks of his faith being devout muslim but worships bhagwan Ganesh and goddess Saraswati...Source: https://www.instagram.com/reel/DIWEwKzhKRv/. Last Accessed: 17 April 2026                 &lt;br&gt;&lt;br&gt;20.0 Maâ€™u, E. (2026, April, 08). University of  Aucklnd- Home&gt; News and opinion- Dementia rates pushed up by poverty, says expert. Source: https://www.auckland.ac.nz/en/news/2026/04/08/etuini-mau-poverty-linked-to-dementia-psychological-medicine.html. Last Accessed: 17 April 2026                &lt;br&gt;&lt;br&gt;21.0  Das, R.(2006). ÅšrÄ«mad BhagavadgÄ«tÄ? SÄ?dhaka-SaÃ±jÄ«vanÄ« [with Appendix] Vol. I Commentary [With Sanskrit text, Transliteration and English Translation] (Translated into English by S. C. Vaishya) Revised by R.N. Kaul &amp; Kesnoran Aggarwal. Published by Gita Press Gorakhpur.                &lt;br&gt;&lt;br&gt;22.0 Craig, B. (2025, March 19). 5 years since COVID pandemic and start of Zoom meetings [Audio]. RNZ â€“ Checkpoint. https://www.rnz.co.nz/national/programmes/checkpoint/audio/2018979543/5-years-since-covid-pandemic-and-start-of-zoom-meetings. Last Accessed: 30 April 2026    &lt;/p&gt;    &lt;h2 id=&quot;13disclaimer&quot;&gt;13.0 DISCLAIMER&lt;/h2&gt;    &lt;p style=&quot;text-align: left;&quot;&gt;        This post is written in good faith, please forgive mistakes.        Also see my        &lt;a href=&quot;https://www.facebook.com/story.php?story_fbid=122176707806768040&amp;id=61573041203371&amp;http_ref=eyJ0cyI6MTc3NjgxNzk2MjAwMCwiciI6IiJ9&quot;&gt;            facebook blog        &lt;/a&gt;    &lt;/p&gt;    &lt;p style=&quot;text-align: justify;&quot;&gt;        &lt;strong&gt;Â© 2026 Jyotirmay Sarna. This work is original. Do not copy, repost, or use without permission.&lt;/strong&gt;        See &lt;a href=&quot;https://www.blog.systematicdefence.tech/license.html&quot;&gt;Legal license&lt;/a&gt;.    &lt;/p&gt;        &lt;form action=&quot;http://127.0.0.1:8000/comment&quot; method=&quot;POST&quot; style=&quot;text-align:center;&quot;&gt;    &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;nyB7z5X2QcM02COTsCfYjeuYeFLo68WrE5v5cpX2&quot; autocomplete=&quot;off&quot;&gt;    &lt;input type=&quot;hidden&quot; name=&quot;source&quot; value=&quot;resilience&quot;&gt;    &lt;label&gt;Name&lt;/label&gt;&lt;br&gt;    &lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;&quot; required&gt;&lt;br&gt;&lt;br&gt;    &lt;label&gt;Comment&lt;/label&gt;&lt;br&gt;    &lt;textarea name=&quot;comment&quot; rows=&quot;4&quot; required&gt;&lt;/textarea&gt;&lt;br&gt;&lt;br&gt;    &lt;div class=&quot;g-recaptcha&quot; data-sitekey=&quot;6Lcn79QsAAAAAEyY__XtQYcfS0aCbMTCwUq3xA-c&quot;&gt;&lt;/div&gt;&lt;br&gt;    &lt;button type=&quot;submit&quot;&gt;Post Comment&lt;/button&gt;&lt;/form&gt;    &lt;div class=&quot;comment-box&quot;&gt;        &lt;strong&gt;test&lt;/strong&gt;&lt;br&gt;        &lt;p&gt;test&lt;/p&gt;        &lt;small&gt;02-May-2026 11:35&lt;/small&gt;    &lt;/div&gt;    &lt;hr&gt;&lt;script src=&quot;https://www.google.com/recaptcha/api.js&quot; async defer&gt;&lt;/script&gt;	&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;    &lt;/main&gt;&lt;/body&gt;&lt;/html&gt;
+=== RESPONSE END ===
+</pre>
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="root-0-test-stdout-[Concordion Specification for 'CheckPageText']">Copy</button>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.4.1</a> at 7/05/2026, 11:34:04 pm</p>
+</div>
+</div>
+</body>
+</html>
