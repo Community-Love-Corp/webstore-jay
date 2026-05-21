@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 *.log
 .DS_Store
 .env
@@ -14,8 +13,6 @@
 /.zed
 /auth.json
 /node_modules
-
-//Laravel
 /public/build
 /public/hot
 /public/storage
@@ -27,25 +24,3 @@ Homestead.yaml
 Thumbs.db
 canarylocalbuild_v1.47.zip
 *.zip
-
-
-npm-debug.log
-yarn-error.log
-
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
-
-# Laravel 5 & Lumen specific with changed public path
-public_html/storage
-public_html/hot
-
-/.vagrant
-.phpactor.json
-auth.json
-
-
-./.git/objects/e7/4b8c7af41e9926edeb5409cba40019f966897a
-./.git/objects/pack/tmp_pack_wSgZfe
-./.git/objects/pack/tmp_pack_kKbmIA
-./.git/objects/pack/tmp_pack_EiyAbK
