@@ -1,10 +1,12 @@
-#Dockerise application and setup critical path
-
+#WEBSTORE IMPLEMENTING 'CUSTOM CONTENT MANAGEMENT SYSTEM'- PHP LARAVEL BREEZE MYSQL STACK
+#Dockerise application on Linux for testing
 ## 1.0 Summary
+This Laravel application's Breeze components modularise and standardise pages, which feed and are fed via data at runtime from an internal database. The format and content of the pages is defined via a structure that together with Entity Relationship paradigm use for database access, forms the crux of the Content Management System. Boost was used to add AI capabilities to the project for help purposes. This knowledge article explains how to migrate development platform of such a 'CMS' laravel applicaiton, to use Laravel's Sail framework enabling the development team to take advantage of superior features of Containerisation. It involves firstly running an ansible script on the host linux vm which sets us the correct tools. Secondly, starting up the containers without using 'Sudo'. Thirdly migrating and seeding the database. Finally, this articles dwelves on the features of the underlying CMS application, i.e. secure runtime retrieval of data, which can be input and updated systematically. 
 
 ## 2.0 Administration
 
 ### 2.1 Change Log
+Last updated 22 May 2026
 
 ### 2.2 Table of Contents
 1.0 Summary
@@ -23,10 +25,12 @@
 
 ### 2.3 Table of Figures
 
-## 3.0 Background
+<on its way>
 
+## 3.0 Background
+Flow is: ADMIN CREATES PRODUCT VIA ADMIN PAGE - ADMIN PAGE UNDER THE HOOD CREATES DATABASE RECORDS - END USER CONSUMES PAGE WITH SUCH RECORDS ON LOGIN - BEFORE PURCHASE, ONLY SUMMARY AVAILABLE - AFTER PURCHASE FULL TEXT OF DOCUMENT AVAILABLE.
 ## 4.0 Assumptions
-Functioning Laravel Applicaton usimg LAMPP or other development tools
+Prior to starting with dockerisation, a basic level of functionality exists for the Laravel Applicaton, which has been confirmed as working (using XAMPP/LAMPP or other development PHP and MSQL tools).
 
 ## 5.0 STEPS TO SETUP APP ON DOCKER
 1. Copy contents of project into a new folder.
@@ -118,10 +122,41 @@ $user->is_admin;
 a. Admin user can see admin pages, and can see products page.
 b. End user can see only products page.
 
-## 7.0 Admin Uses CMS to create product
+## 7.0 Admin Uses CMS to create/edit product
 
-## 8.0 End user purchases Product
+Admin Portal
+
+![Admin Portal](../public/images/AdminPortal.jpg)
+
+Product Edit Page
+
+<i>Top</i>
+
+![Admin Portal](../public/images/AdminPortal.jpg)
+
+<i>Bottom</i>
+
+![Admin Portal](../public/images/AdminPortal.jpg)
+
+ 
+## 8.0 End user views Product available for purchase
+
+In this custom CMS implementation, at runtime, data loads neatly from the database to populate products for sale. User can see only summary, with the option to buy now:
+
+![CMS Loads off Database](../public/images/cms-working.jpg)
+
+## 9.0 End user purchases Product
+
+End User Clicks Buy Now:
+
+![Payment Portal](../public/screenshots/paypal-sandbox-transaction-evidence.jpg)
+
+Payment Successful leading to reveal of full text of research paper:
+
+![Payment Successful](../public/screenshots/BusinessOperationalLocally.jpg)
 
 ## 9.0 Conclusion
+It is possible to migrate even complex applications to be used within Docker infrastructure for testing and pre-release verification purposes, where the containers can be created to mimic production like infrastructure in a repeatable/automated fashion, hence improving quality Assurance. 
 
-## 10.0 References
+## 10.0 Next Steps
+Fully automated Staging/'Pre-Release' CICD pipeline on Azure Kubernetes infrastructure, using Terraform.
