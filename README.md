@@ -282,3 +282,7 @@ Preparation for merge with GitHub repository.
 ## Kali linux 2.11
 22 May 2026 6 AM: 
 Laravel application Functional on docker containers. See Cookbook>DockeriseApplication.md till Section 5 'STEPS TO SETUP APP ON DOCKER'
+
+## Kali linux 2.12
+22 May 2026 9:30 AM: 
+First release of Knowledge Article cookbook/DockeriseApplication.md
