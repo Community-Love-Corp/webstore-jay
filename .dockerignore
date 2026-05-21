@@ -1,0 +1,24 @@
+# Ignore local dev junk
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignore local environment files
+#.env
+#.env.*
+
+# Ignore VCS
+.git
+.gitignore
+
+# Ignore OS junk
+.DS_Store
+
+# Ignore build artifacts
+*.zip
+*.tar
+*.gz
+
+# DO NOT ignore vendor (we need it for the builder stage)
+# DO NOT ignore storage (Laravel needs the directories)
+# DO NOT ignore bootstrap/cache (Laravel needs the directory)

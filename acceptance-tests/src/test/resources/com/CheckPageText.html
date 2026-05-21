@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+	<head>
+	    <title>Endpoint Test</title>
+	</head>
+		<body>
+		
+		<h1>Endpoint Test</h1>
+		
+		<!-- Set URL and display it -->
+		<p concordion:execute="#url = getTestUrl()">
+		    URL under test:
+		    <span concordion:echo="#url"></span>
+		</p>
+		
+		<!-- Set phrase and display it -->
+		<p concordion:execute="#text = getTestPhrase()">
+		    Phrase to test:
+		    <span concordion:echo="#text"></span>
+		</p>
+		
+		<!-- Assertion and human-readable message -->
+		<p concordion:assertTrue="urlContainsText(#url, #text)">
+		    <i>The page contains the phrase
+		        "<span concordion:echo="#text"></span>".
+		    </i>
+		</p>		
+	</body>
+</html>

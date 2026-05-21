@@ -1,0 +1,7 @@
+vendor/
+node_modules/
+storage/
+bootstrap/cache/
+public/build/
+*.zip
+IGNORE_COMMENT_ powershell command is: & "C:\Program Files\7-Zip\7z.exe" a -tzip archive.zip . "-xr@.zipignore"
