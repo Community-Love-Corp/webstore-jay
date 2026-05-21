@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.EndpointTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-05-07T11:34:03.893Z" hostname="ASHWRENUJNITIKA" time="0.706">
+  <properties/>
+  <testcase name="callEndpoint()" classname="com.EndpointTest" time="0.691"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

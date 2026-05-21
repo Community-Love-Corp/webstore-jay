@@ -1,0 +1,66 @@
+
+/*
+AUTHOR: Sarna, J.
+DATE: 07 May 2026
+This configuration:
+
+- Lets JUnit 5 tests run normally (@Test annotations)
+
+- Lets JUnit 4 Concordian tests run via the Vintage engine (@RunWith(ConcordionRunner.class) annotations)
+
+
+
+*/
+
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	// JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	
+	// JUnit 4 (needed for ConcordianRunner)
+	testImplementation 'junit:junit:4.13.2'	
+	
+	//JUnit Vintage engine, so JUnit 4 tests can under JUnit 5 platform	(Runtime only)
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.10.0'
+
+	// Concordian
+    testImplementation 'org.concordion:concordion:4.0.1'
+
+	// Apache HttpClient Fluent API
+    testImplementation 'org.apache.httpcomponents.client5:httpclient5-fluent:5.3'
+
+	// Add logging    
+    //testRuntimeOnly 'ch.qos.logback:logback-classic:1.4.14'
+    testRuntimeOnly 'org.slf4j:slf4j-nop:2.0.9'
+
+}
+
+
+test {
+    useJUnitPlatform()   // Enables JUnit 5
+    systemProperties['concordion.output.dir'] = "$buildDir/reports/spec"
+    testLogging.showStandardStreams = true
+    
+        // Forward ALL -D properties to the test JVM
+    systemProperties System.getProperties()
+    
+/*	Code to selectively forward -D properties to the test JVM    
+    ['externalIp', 'testPhrase'].each { key ->
+        if (System.getProperty(key) != null) {
+            systemProperty key, System.getProperty(key)
+        }
+    }
+*/
+    // Pass externalIp from command line or environment
+    if (System.getProperty("externalIp") != null) {
+        systemProperty "externalIp", System.getProperty("externalIp")
+    }
+}
