@@ -1,0 +1,76 @@
+table, th, tr {
+  border: 1px solid black; /* Width, Style, Color */
+  border-collapse: collapse; /* Merges double lines into one */
+}
+
+th, td {
+  text-align: left;
+}
+
+body {
+  display: flex;
+  flex-direction: column;  /* Stacks items vertically */
+  justify-content: center; /* Centers vertically */
+  align-items: center;     /* Centers horizontally */
+  min-height: 100vh;
+  margin: 0;
+}
+
+.auth-box-main {
+  box-sizing: border-box; /* Crucial for controlling border+padding size */
+  border: 15px solid #ccc;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 100px;
+  background-color: #f9f9f9;
+  word-wrap: break-word; /* Ensures long text stays inside */
+  width: 80%; /* or any fixed width */
+  max-width: 800px;
+}
+
+.auth-box-main img.auth-img {
+  max-width: 100%;   /* stay within the auth-box-main width */
+  width: auto;       /* let the browser decide natural width up to 100% */
+  height: auto;      /* keep aspect ratio */
+  display: block;
+  margin: 0 auto;    /* center inside the box */
+}
+
+
+table, img {
+  margin: 0 auto;
+}
+
+.center-image {
+  display: block;
+  margin: 0 auto;
+}
+.g-recaptcha {
+  display: inline-block;
+}
+
+.center-audio {
+  display: block;
+  margin: 0 auto; /* Top/Bottom: 0, Left/Right: auto */
+}
+
+.indent {
+  padding-left: 20px;
+}
+
+.responsive-img {
+  max-width: auto;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto; /* optional: keeps it centered */
+}
+
+.comment-box {
+  padding: 10px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+@media print {
+    img { display: none !important; }
+}

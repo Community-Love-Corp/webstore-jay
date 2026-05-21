@@ -1,0 +1,88 @@
+# --- Stage 1: PHP Dependencies ---
+FROM composer:2 AS vendor
+WORKDIR /app
+COPY composer.json composer.lock ./
+RUN composer install --optimize-autoloader --no-interaction --no-scripts
+
+# --- Stage 2: Frontend Assets (Breeze needs this!) ---
+FROM node:20-alpine AS frontend
+WORKDIR /app
+COPY package.json package-lock.json vite.config.js ./
+COPY resources ./resources
+COPY public ./public
+RUN npm install && npm run build
+
+# --- Stage 3: Production Runtime (NGINX + PHP-FPM) ---
+FROM php:8.4-fpm-alpine AS app
+
+# System deps
+RUN apk add --no-cache \
+    libpng-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    oniguruma-dev \
+    libxml2-dev \
+    nginx \
+    supervisor
+
+# PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+
+WORKDIR /var/www/html
+
+# --------------------------------------------
+# Remove stale caches BEFORE copying the app
+# --------------------------------------------
+#RUN rm -rf bootstrap/cache/*.php
+
+# Copy composer files
+COPY composer.json composer.lock ./
+
+# Copy Laravel source
+COPY app app
+COPY bootstrap bootstrap
+COPY config config
+COPY database database
+COPY public public
+COPY resources resources
+COPY routes routes
+#COPY storage storage
+COPY artisan artisan
+COPY .env.production .env
+RUN mkdir -p storage/logs \
+    storage/framework/cache \
+    storage/framework/sessions \
+    storage/framework/views \
+    bootstrap/cache \
+ && chown -R www-data:www-data storage bootstrap/cache
+RUN rm -rf bootstrap/cache/*.php
+
+
+
+# Vendors from Stage 1
+COPY --from=vendor /app/vendor ./vendor
+
+# Frontend build from Stage 2
+COPY --from=frontend /app/public/build ./public/build
+
+# Permissions
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# NGINX config
+RUN rm -f /etc/nginx/http.d/default.conf
+COPY docker/nginx.conf /etc/nginx/http.d/default.conf
+
+# Supervisor config
+COPY docker/supervisord.conf /etc/supervisord.conf
+
+# Laravel caches
+#RUN php artisan config:cache --no-plugins && \
+#    php artisan route:cache && \
+#    php artisan view:cache
+# Skip artisan caching during build
+RUN echo "Skipping artisan caching during Docker build"
+
+EXPOSE 80
+
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]

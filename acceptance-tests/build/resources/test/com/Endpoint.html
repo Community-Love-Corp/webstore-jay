@@ -1,0 +1,23 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<body>
+
+<h1>Endpoint Smoke Test</h1>
+
+<p>
+When the application is deployed, calling the root endpoint should return a non‑empty response.
+</p>
+
+<p>
+    <span concordion:set="#ip">localhost</span>
+</p>
+
+<p concordion:set="#response">
+    callEndpoint(#ip)
+</p>
+
+<p concordion:assertTrue="#response != ''">
+    The endpoint returns a non-empty response.
+</p>
+
+</body>
+</html>
