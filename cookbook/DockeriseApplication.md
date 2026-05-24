@@ -69,7 +69,7 @@ DB_PASSWORD=password
 //stop and start sail, so new environment values can take effect:
 sail down -v
 sail up -d
-
+```
 
 Time to create the database:
  
@@ -90,7 +90,7 @@ Time to create the database:
   2026_05_13_064606_create_products_table ...................................................... 50.59ms DONE
   2026_05_13_113315_add_is_admin_to_users_table ................................................ 55.42ms DONE
   2026_05_13_181154_add_product_id_to_orders_table ............................................ 130.37ms DONE
-
+```
  
 Application should work now, if user navigates to http://localhost.
 
@@ -144,6 +144,8 @@ Product Edit Page
 In this custom CMS implementation, at runtime, data loads neatly from the database to populate products for sale. User can see only summary, with the option to buy now:
 
 ![CMS Loads off Database](../public/images/cms-working.jpg)
+
+![CMS Loads off Database](../public/images/buy-now.png)
 
 ## 9.0 End user purchases Product
 
