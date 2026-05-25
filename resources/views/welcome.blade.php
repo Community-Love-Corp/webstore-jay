@@ -281,5 +281,9 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+        @php
+    	    $buildNumber = trim(file_get_contents(base_path('build_number.txt')));
+    	@endphp
+    	<div>Build: {{ $buildNumber }}</div>
     </body>
 </html>

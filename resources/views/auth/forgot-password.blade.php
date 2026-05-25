@@ -15,6 +15,7 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+	    <br><br><p><div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site') }}"></div></p>
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button>
@@ -22,4 +23,10 @@
             </x-primary-button>
         </div>
     </form>
+       @if(session('captcha_error'))
+        <p style="color:red;">{{ session('captcha_error') }}</p>
+    @endif
+    
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </x-guest-layout>

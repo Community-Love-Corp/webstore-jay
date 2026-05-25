@@ -6,7 +6,13 @@ This Laravel application's Breeze components modularise and standardise pages, w
 ## 2.0 Administration
 
 ### 2.1 Change Log
-Last updated 22 May 2026
+
+```
+| Version | Date         | Author   | Description    |
+|---------|--------------|----------|----------------|
+| 1.0     | 22 May 2026  | Sarna, J.| First Release  |
+| 2.0     | 26 May 2026  | Sarna, J.| Various Updates|
+```
 
 ### 2.2 Table of Contents
 1.0 Summary
@@ -20,8 +26,9 @@ Last updated 22 May 2026
 6.0 Create admin user and end user
 7.0 Admin Uses CMS to create product
 8.0 End user purchases Product
-9.0 Conclusion
-10.0 References
+9.0 Feedback - Analytics / SEO
+10.0 Conclusion
+11.0 References
 
 ### 2.3 Table of Figures
 
@@ -36,25 +43,34 @@ Prior to starting with dockerisation, a basic level of functionality exists for 
 1. Copy contents of project into a new folder.
 2. If using Eclipse IDE, change the .project file to update project name, to match folder name.
 3. Git init
-4. git remote add origin https://<token-id>@github.com/Community-Love-Corp/webstore-jay.git
+4. git remote add origin <token-id>@github.com:Community-Love-Corp/webstore-jay.git
 
 //increase repo buffer size as my repo is large. 
 git config --global ssh.postBuffer 524288000
 
-git pull origin main
-git config pull.rebase false
-git push origin main --force                  
+- git pull origin main
+- git config pull.rebase false
+- git push origin main --force                  
 
-composer require laravel:sail –dev
-alias sail=’bash vendor/bin/sail’
+- composer require laravel:sail –dev
 
-//playbook to allow current user to be added to docker group, so docker can be run without sudo, and then run:
+//Note: There maybe a boost related error. It can be temporarily ignored. Boost was used to setup project.
 
-ansible-playbook –i “localhost,” –c local –become –ask-become-pass scripts/vm-setup-playbook.yml
+- alias sail=’bash vendor/bin/sail’
+
+//Run playbook to install tools and allow current user to be added to docker group, so docker can be run without sudo:
+
+ansible-playbook -i “localhost,” -c local --become --ask-become-pass scripts/vm-setup-playbook.yml
+
+//Give ownership to current user of the project root folder, so Sail can overwrite compose.yaml for install purposes
+
+sudo chown -R $USER:$USER .
 
 php artisan sail:install //In the wizard, choose mySql, mailtip, mealisearch, redis and selenium
 
 sail up –d -–build //- Creates docker-compose.yml. Creats Laravel container and the five others, three of which with volumes, and one networking container. Total of nine.
+
+//You most likely should notice that the mysql container does not start and there is a port conflict on TCP 3306. Doing a grep on the port also brings nothing 'sudo netstat -tulpn | grep 3306'. This is because some OS auto start mysql service on login. The solution is to use systemctl to stop this service (sudo systemctl stop mysql) and to disable it (sudo systemctl disable mysql), so this conflict does not happen again.  
 
 sail ps // verify outcome
 
@@ -71,7 +87,12 @@ sail down -v
 sail up -d
 ```
 
-Time to create the database:
+//verify connection successful
+sail artisan tinker
+DB::connection()->getPdo(); // This should return a live PDO object
+DB::select('SHOW TABLES'); // shows all tables
+
+//Time to create the database:
  
 └─$ sail artisan migrate
 
@@ -91,6 +112,31 @@ Time to create the database:
   2026_05_13_113315_add_is_admin_to_users_table ................................................ 55.42ms DONE
   2026_05_13_181154_add_product_id_to_orders_table ............................................ 130.37ms DONE
 ```
+// Seed the database
+sail artisan make:seeder UserSeeder // Creates file Database/seeders/UserSeeder.php. Add data via code to it, and call the class in DatabaseSeeder.php.
+
+sail artisan make:seeder ProductSeeder  // Creates file Database/seeders/ProductSeeder.php. Add data via code to it, and call the class in DatabaseSeeder.php.
+
+// Run the Seeder - OPTION A
+- sail artisan db:seed // This appends records to the existing database tables
+
+// Run the Seeder - OPTION B
+- sail artisan migrate:fresh --seed
+ 
+ 
+ // Test DB creation from the backend
+- sail artisan tinker
+- DB::table('users')->count(); // how many user records
+- App\Models\User::all(); //show all users
+- DB::table('products')->count(); // how many product records 
+- App\Models\Product::all(); //show all products
+ 
+ // Setup Storage symlinks - XAMPP automatically exposes: public/storage → storage/app/public. However, this needs to be setup in sail via command:
+ - sail artisan storage:link
+ 
+ ```
+    INFO  The [public/storage] link has been connected to [storage/app/public].  
+ ```
  
 Application should work now, if user navigates to http://localhost.
 
@@ -122,9 +168,9 @@ $user->is_admin;
 a. Admin user can see admin pages, and can see products page.
 b. End user can see only products page.
 
-## 7.0 Admin Uses CMS to create/edit product
+## 7.0 Admin user developer.jay2@gmail.com uses CMS to create/edit product
 
-Admin Portal
+Admin Portal - url: http://localhost/admin/products
 
 ![Admin Portal](../public/images/AdminPortal.jpg)
 
@@ -153,12 +199,26 @@ End User Clicks Buy Now:
 
 ![Payment Portal](../public/screenshots/paypal-sandbox-transaction-evidence.jpg)
 
+![Payment Portal](../public/screenshots/payment-successful.jpg)
+
 Payment Successful leading to reveal of full text of research paper:
 
 ![Payment Successful](../public/screenshots/BusinessOperationalLocally.jpg)
 
-## 9.0 Conclusion
+![Order in email](../public/screenshots/email-working-mailpit.jpg)
+
+## 10.0 Feedback - Analytics / SEO
+
+Got token to enable SEO from Cloudflare.
+
+![SEO Setup](../public/screenshots/seo-setup.jpg)
+
+When app is deployed to staging environment, analytics will display.
+
+![SEO Setup](../public/screenshots/seo-use.jpg)
+
+## 11.0 Conclusion
 It is possible to migrate even complex applications to be used within Docker infrastructure for testing and pre-release verification purposes, where the containers can be created to mimic production like infrastructure in a repeatable/automated fashion, hence improving quality Assurance. 
 
-## 10.0 Next Steps
+## 12.0 Next Steps
 Fully automated Staging/'Pre-Release' CICD pipeline on Azure Kubernetes infrastructure, using Terraform.
