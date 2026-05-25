@@ -286,3 +286,7 @@ Laravel application Functional on docker containers. See Cookbook>DockeriseAppli
 ## Kali linux 2.12
 22 May 2026 9:30 AM: 
 First release of Knowledge Article cookbook/DockeriseApplication.md
+
+## Kali linux 2.13
+26 May 2026: 
+Improved code and feedback loops. See Dockersie Applicaton Change Log Version 2.0.

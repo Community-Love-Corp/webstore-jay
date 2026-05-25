@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -24,6 +25,40 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        $request->validate([
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
+            'g-recaptcha-response' => ['required'],
+        ]);
+        
+        $captcha = $request->input('g-recaptcha-response');
+        
+        
+        
+        $verify = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            
+            'secret' => config('services.recaptcha.secret'),
+            
+            'response' => $captcha,
+            
+        ]);
+        
+        
+        
+        if (!($verify->json()['success'] ?? false)) {
+            
+            return back()
+            
+            ->withInput()
+            
+            ->with('captcha_error', 'Please complete the CAPTCHA test.');
+            
+        }
+        
+        
+        
+        
+        
         $request->authenticate();
 
         $request->session()->regenerate();
@@ -45,3 +80,5 @@ class AuthenticatedSessionController extends Controller
         return redirect('/');
     }
 }
+
+

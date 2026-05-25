@@ -8,6 +8,7 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
@@ -36,6 +37,31 @@ class NewPasswordController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        
+        
+        $captcha = $request->input('g-recaptcha-response');
+        
+        
+        
+        $verify = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            
+            'secret' => config('services.recaptcha.secret'),
+            
+            'response' => $captcha,
+            
+        ]);
+        
+        
+        
+        if (!($verify->json()['success'] ?? false)) {
+            
+            return back()
+            
+            ->withInput()
+            
+            ->with('captcha_error', 'Please complete the CAPTCHA test.');
+            
+        }
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the

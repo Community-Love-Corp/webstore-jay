@@ -300,6 +300,10 @@
         <?php if(Route::has('login')): ?>
             <div class="h-14.5 hidden lg:block"></div>
         <?php endif; ?>
+        <?php
+    	    $buildNumber = trim(file_get_contents(base_path('build_number.txt')));
+    	?>
+    	<div>Build: <?php echo e($buildNumber); ?></div>
     </body>
 </html>
 <?php /**PATH /var/www/html/resources/views/welcome.blade.php ENDPATH**/ ?>

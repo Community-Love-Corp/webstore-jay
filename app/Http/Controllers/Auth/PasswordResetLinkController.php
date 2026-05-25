@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
@@ -29,6 +30,34 @@ class PasswordResetLinkController extends Controller
         $request->validate([
             'email' => ['required', 'email'],
         ]);
+        
+        
+        $captcha = $request->input('g-recaptcha-response');
+        
+        
+        
+        $verify = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            
+            'secret' => config('services.recaptcha.secret'),
+            
+            'response' => $captcha,
+            
+        ]);
+        
+        
+        
+        if (!($verify->json()['success'] ?? false)) {
+            
+            return back()
+            
+            ->withInput()
+            
+            ->with('captcha_error', 'Please complete the CAPTCHA test.');
+            
+        }
+        
+        
+        
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we

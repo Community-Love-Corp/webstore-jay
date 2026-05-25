@@ -276,6 +276,8 @@
                 <?php echo e(__('Already registered?')); ?>
 
             </a>
+        </div>
+		    <br><br><p><div class="g-recaptcha" data-sitekey="<?php echo e(config('services.recaptcha.site')); ?>"></div></p>
 
             <?php if (isset($component)) { $__componentOriginald411d1792bd6cc877d687758b753742c = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginald411d1792bd6cc877d687758b753742c = $attributes; } ?>
@@ -299,8 +301,14 @@
 <?php $component = $__componentOriginald411d1792bd6cc877d687758b753742c; ?>
 <?php unset($__componentOriginald411d1792bd6cc877d687758b753742c); ?>
 <?php endif; ?>
-        </div>
+
     </form>
+    <?php if(session('captcha_error')): ?>
+        <p style="color:red;"><?php echo e(session('captcha_error')); ?></p>
+    <?php endif; ?>
+    
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal69dc84650370d1d4dc1b42d016d7226b)): ?>
