@@ -132,11 +132,11 @@ Product Edit Page
 
 <i>Top</i>
 
-![Admin Portal](../public/images/AdminPortal.jpg)
+![Admin Portal](../public/images/product-add-edit-ui1.jpg)
 
 <i>Bottom</i>
 
-![Admin Portal](../public/images/AdminPortal.jpg)
+![Admin Portal](../public/images/product-add-edit-ui2.jpg)
 
  
 ## 8.0 End user views Product available for purchase
