@@ -27,8 +27,9 @@ This Laravel application's Breeze components modularise and standardise pages, w
 7.0 Admin Uses CMS to create product
 8.0 End user purchases Product
 9.0 Feedback - Analytics / SEO
-10.0 Conclusion
-11.0 References
+10.0 Pull Request
+11.0 Conclusion
+12.0 References
 
 ### 2.3 Table of Figures
 
@@ -216,6 +217,24 @@ Got token to enable SEO from Cloudflare.
 When app is deployed to staging environment, analytics will display.
 
 ![SEO Setup](../public/screenshots/seo-use.jpg)
+
+## 11.0 Pull Request Assessment
+
+11.1 Manually verify connection:
+
+```bash
+curl -H "Authorization: token <github classic token with atleast repo access>" \
+> https://api.github.com/repos/Community-Love-Corp/webstore-jay/pulls
+```
+
+11.2 Verify connection via Eclipse UI:
+
+![](../public/screenshots/pull-request-eclipse-github.jpg)
+
+11.3 Pull Request in Github
+
+![](../public/screenshots/pull-request-evidence.jpg)
+
 
 ## 11.0 Conclusion
 It is possible to migrate even complex applications to be used within Docker infrastructure for testing and pre-release verification purposes, where the containers can be created to mimic production like infrastructure in a repeatable/automated fashion, hence improving quality Assurance. 
