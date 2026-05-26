@@ -290,3 +290,7 @@ First release of Knowledge Article cookbook/DockeriseApplication.md
 ## Kali linux 2.13
 26 May 2026: 
 Improved code and feedback loops. See Dockersie Applicaton Change Log Version 2.0.
+
+## Kali linux 2.13 HOTFIX
+26 May 2026: 
+Added details of Pull Request in 'DockeriseApplicaton.md' 
