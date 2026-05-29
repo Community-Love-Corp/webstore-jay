@@ -118,8 +118,9 @@
 
         <h2 id="4human-life">4.0 GUIDANCE FOR HUMAN LIFE </h2>
         <p>-------------</p>
-        <p  style="text-align: left;"><br> In order to turn natural chaos of human life into path of progress, the world has learnt to define best practices and standards. Hence, the term "Standing on the shoulder of Giants" was coined as generations build upon the learnings of the generations before them. The Logic then also boils down to that there should also be best practices for personal life. Provided a person can make serious attempt to be authentic in their lives as per guidance from sages (Kadamba Kanana Swami, 2023, April, 25), then following is the ideal which can be implemented via grace of such His/Her/Their Holiness individuals, whether it be in the professional, health or spiritual domain, in the footsteps of best available guidance on the matter:</p>
-        <div>
+        <p  style="text-align: left;"><br> In order to turn natural chaos of human life into path of progress, the world has learnt to define best practices and standards. Hence, the term "Standing on the shoulder of Giants" was coined as generations build upon the learnings of the generations before them. The Logic then also boils down to that there should also be best practices for personal life. Provided a person can make serious attempt to be authentic in their lives as per guidance from <a href="./sages.php">sages</a> (Kadamba Kanana Swami, 2023, April, 25), then following is the ideal which can be implemented via grace of such His/Her/Their Holiness individuals, whether it be in the professional, health or spiritual domain, in the footsteps of best available guidance on the matter:</p>
+        </div>
+        <div class="auth-box-main">
             <h3>How to Lead God Compliant family Life? </h3> 
         <p style="text-align: left;">&nbsp&nbsp&nbsp&nbsp <b>'mama vartmānuvartante manuṣhyāḥ pārtha sarvaśhaḥ'</b>- Whatsoever, a great man does, the same is done by others, as well (Gita 3/21). God is the supreme Being. He [God/ She/ They] is superior to the all the great men. So all people follow Him [Her/ Them]. The same fact, has been pointed out, in the second half of the twenty-third verse of the third chapter. </p>
     <h4 id="41parent">4.1 Feeling towards parent</h4>
@@ -138,6 +139,7 @@
 <p style="text-align: left;">* Lord Rāma declares, "I can enter fire, can eat deadly poison and can jump into the sea in order to carry out the order of My father (Vālmīki Rāmāyaņa, Ayodhyā. 18/28-29)".</p>
 <p style="text-align: left;">Source: Section 4.1 and 4.2 are sourced from Chapter 4 Verse 11 (Das, 2006, Pg. 490)</p>
 </div>
+        <div class="auth-box-main">
 <p style="text-align: left;">NOTE: In order to support LGBTQI+ (Gender Minorities Aotearoa, 2026) as per Annex A (Wilton, 2022), LGBTQI+ complaint english has been used on this page.</p>        
         
         <h2 id="5conclusion">5.0 CONCLUSION </h2>
@@ -163,8 +165,8 @@
         <p style="text-align: left;">While all information provided is true to creator's best of knowledge, 'open source' creative liberties were taken in creation of this content. Creator unreservedly apologises for any perceived and/or potential unintended offence to anyone in anyway via this post.</p>        
         
         <p><Strong>© 2026 Jyotirmay Sarna. This work is original. Do not copy, repost, or use without permission.</Strong> See <a href="license.html">Legal license</a>.</p>
-
-
+<a href="./index.html"><h2>HOME<h2></a>
+</div>
     </body>
 </html>
                 

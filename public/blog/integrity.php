@@ -1,7 +1,7 @@
 <html>
         <head>
              <meta charset="UTF-8"> 
-        <link rel="stylesheet" href="./css/blog.css">
+            <link rel="stylesheet" href="./css/blog.css">
         <title>Integrity</title>
         <style>
           body {
@@ -150,8 +150,9 @@
         <p>--------------- </p>
         <p style="text-align: left;">While all information provided is true to creator's best of knowledge, 'open source' creative liberties were taken in creation of this content. Creator unreservedly apologises for any perceived and/or potential unintended offence to anyone in anyway via this post.</p>        
         
-        <p><Strong>© 2026 Jyotirmay Sarna. This work is original. Do not copy, repost, or use without permission.</Strong> See <a href="https://www.blog.systematicdefence.tech/license.html">Legal license</a>.</p>
+        <p><Strong>© 2026 Jyotirmay Sarna. This work is original. Do not copy, repost, or use without permission.</Strong> See <a href="https://www.blog.systematicdefence.tech/blog/license.html">Legal license</a>.</p>
  <br><br>
+ <a href="./index.html"><h2>HOME<h2></a>
  </div>
     </body>
 </html>

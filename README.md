@@ -32,16 +32,63 @@ blog-systematicdefence-tech/
 # Versions
 
 ### 0.1 
-2 May 2026 Saturday 21:30 - First local working version of db enabled php Laravel project. It used XAMPP MySQL and Apache. .env had following values:
+2 May 2026 Saturday 21:30 - First local working version of db enabled php Laravel project in Kali OS. It used XAMPP MySQL and Apache. 
+
+a) Start Apache Server and then SQL Server
+
+![Working local XAMPP Server for SQL Server](./public/screenshots/XAMPP-Server.jpg) 
+
+
+-- Outcome --
+![Working with css and screenshot](./public/screenshots/css-and-images-working.jpg) 
+css-and-images-working.jpg
+
+b) Create database, and a user to access it:
+
+-- 1. Create database that also supports Emojis and international characters
+CREATE DATABASE IF NOT EXISTS blog_systematicdefence_tech
+CHARACTER SET utf8mb4 
+COLLATE utf8mb4_unicode_ci;
+
+
+-- 2. Create the new user. My SQL cannot connect via socket connection (uses hosts name) or via TCP connection (uses host's IP address). Create user for both scenarios:
+
+CREATE USER 'system-developer'@'%' IDENTIFIED BY <Supply Password 1>;
+
+CREATE USER 'system-developer'@'127.0.0.1' IDENTIFIED BY <Supply Password 2>; 
+
+-- 4. Grant all privileges on the specific database to both users:
+GRANT ALL PRIVILEGES ON blog_systematicdefence_tech.* TO 'system-developer'@'%';
+GRANT ALL PRIVILEGES ON blog_systematicdefence_tech.* TO 'system-developer'@'127.0.0.1'; 
+
+
+![User created with privileges](./public/screenshots/privileges.jpg) 
+
+-- 4. Apply the changes
+FLUSH PRIVILEGES;
+
+-- 5. Verify outcome
+SELECT user, host, plugin FROM mysql.user; 
+
+ --outcome:
+ system-developer@% 
+system-developer@127.0.0.1 
+ 
+ -- 6. update .env
+
+```txt
+DB_CONNECTION=mysql
+DB_PORT=3306
+DB_HOST=127.0.0.1 
+DB_USERNAME=system-developer 
+DB_PASSWORD=<Password 2>
 
 ```
-DB_CONNECTION=mysql
-DB_HOST=localhost
-DB_PORT=3306
-DB_DATABASE=blog_systematicdefence_tech
-DB_USERNAME=system-developer
-DB_PASSWORD=<pwd>
-```
+-- 7. Run Migrate on cmd, with seeders
+php artisan migrate:fresh --seed
+
+-- 8. Connect [public/storage] link to [storage/app/public]. 
+php artisan storage:link
 
 Key commands:
 
@@ -90,15 +137,6 @@ php artisan serve
 npm install
 npm run dev
 ```
-2. Run XAMPP server locally to start SQL Server
-
-![Working local XAMPP Server for SQL Server](./public/screenshots/XAMPP-Server.jpg) 
-
-
--- Outcome --
-![Working with css and screenshot](./public/screenshots/css-and-images-working.jpg) 
-css-and-images-working.jpg
-
 ## 1.0
 2 May 2026 Saturday 23:41: Basic skeleton of application working end to end:
 
