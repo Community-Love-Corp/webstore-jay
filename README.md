@@ -332,3 +332,10 @@ Improved code and feedback loops. See Dockersie Applicaton Change Log Version 2.
 ## Kali linux 2.13 HOTFIX
 26 May 2026: 
 Added details of Pull Request in 'DockeriseApplicaton.md' 
+
+## Kali linux 2.14 
+29 May 2026: New branch created for hosting provider source.
+
+## Kali Linux 2.15
+Friday 29 May 2026 19:18: Updated .gitignore to enable git to commit folders that are needed by fastcomet. Also, identified that build number auto-increment is not functional at present. 
+
