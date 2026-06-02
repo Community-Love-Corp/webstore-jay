@@ -24,8 +24,9 @@
         
 		   <p><i id="mm1gitajayanti" style="text-align: center;"> Item 1: "ŚRĪMAD BHAGAVAD GĪTĀ" JĀYĀNTI CELEBRATIONS - 01 DECEMBER 2025, IN LOWER HUTT, NEW ZEALAND</i></p>	
         <p><img src="images/GitaJayanti2025.jpg" alt="Gita Jayanti in Lower Hutt" style="center-image;width:600px;"></p> 
- <h2 id="1background">2.0 BACKGROUND </h2>
-<p style="text-align: left;"  class="indent">I am so upset that most people say Hinduism has no oath book, it is polytheistic/'does not have one god' and has an engrained degenerate caste system, where people belonging to some castes are even barred from entering their place of worship. It makes my blood curdle with great vengeance, that even Hindus repeat these lies and firmly believe it. I see it like a civil war.</p>
+ <h2 id="1background">2.0 BACKGROUND: MY PROBLEM </h2>
+<p style="text-align: left;"  class="indent">I am so upset that most people say Hinduism has no oath book, it is polytheistic/'does not have one god' and has an engrained degenerate caste system, where people belonging to some castes are even barred from entering their place of worship. It makes my blood curdle with great vengeance, that even Hindus repeat these lies and firmly believe it. I see it like a civil war. I wish to drink the blood of traitors and/or racists with their accomplices, while they are still alive, with their families watching. If I die trying it, it would still be worth it as I hope I would be reborn endlessly till I finish the job. </p>
+<p style="text-align: left;"  class="indent">&nbsp;&nbsp;&nbsp;The intention is that after it, the members of their iwi/tribe and hapū/'family group' fear approaching the opposite sex knowing I am thirsty for their offspring's blood and to play with their entrails, like the ones of veals hung outside our temples for more than a millenia inorder to desecrate them, and even worse behaviour (Okoth-Obbo, 2020, August, 2). Behaviour that was facilitated by the prevalence of such disinformation and the 'easy' use of it by criminals under the guise of Caliphate Style 'jihad' and 'divide and rule' machiavellian tactics that British Museums openly hide to this day. I will prosecute this behaviour, even if the perpetrators of it are members of my own family or extended family. This way I hope to end such family lines and rid the world of the blood of filth. This would be my humble service to my 'defender' varna/caste ancestors, hence I will rid myself of the debt of being born. Amen.</p>
 
  <h2 id="3resolution">3.0 RESOLUTION </h2>
 
@@ -61,6 +62,7 @@
 <p style="text-align: left;">1.0 Achar, B. N. N.(2014). Revisiting the Date of Mahabharata war:
 astronomical methods using planetarium software. Scribd. https://www.scribd.com/document/366258717/Mahabharat-War-Dating-3067-BC-Prof-narahari-Achar. Last Accessed 6 May 2026.</p>
 <p style="text-align: left;">2.0 Ramsukhdas, S.(2006). Śrīmad Bhagavadgītā Sādhaka-Sañjīvanī [with Appendix] Vol. I Commentary [With Sanskrit text, Transliteration and English Translation] (Translated into English by S. C. Vaishya) Revised by R.N. Kaul & Kesnoran Aggarwal. Published by Gita Press Gorakhpur</p>
+<p style="text-align: left;">3.0 Okoth-Obbo, V. (2020, August, 2). United Nations Development Programme (UNDP)- Home > Iraq > Stories > Six Years After Sinjar Massacre, Support and Services are Vital for Returning Yazidis.https://www.undp.org/iraq/stories/six-years-after-sinjar-massacre-support-and-services-are-vital-returning-yazidis. Last Accessed: 05 April 2026</p>
 
 <p style="text-align: left;">1. अचार, बी. एन. एन. (2014). महाभारत युद्ध की तिथि का पुनर्मूल्यांकन:
 ग्रहकला सॉफ़्टवेयर का उपयोग करते हुए खगोलीय विधियाँ। स्क्रिब्ड। https://www.scribd.com/document/366258717/Mahabharat-War-Dating-3067-BC-Prof-narahari-Achar । 6 मई 2026 पर उपलब्ध/चेक किए गया |</p>

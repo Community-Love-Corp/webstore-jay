@@ -337,18 +337,5 @@ Added details of Pull Request in 'DockeriseApplicaton.md'
 29 May 2026: New branch created for hosting provider source.
 
 ## Kali Linux 2.15
-Friday 29 May 2026 19:18: Updated .gitignore to enable git to commit folders that are needed by fastcomet. Also, identified that build number auto-increment is not functional at present. 
+Tuesday 2 June 2026 16:27:  
 
-## Production 3.00
-Tuesday 2 June 2026 16:30: Working in Production. To do so, I went to 'Manage SQL Databases', and to the db I added the worpress user. I changed the password for them, and then with following values in .env it worked:
-
-```
-DB_CONNECTION=mysql
-DB_HOST="s4710.syd1.stableserver.net" 
-DB_PORT=3306
-DB_DATABASE='systema1_systematic_defence'
-DB_USERNAME='systema1_wp552'
-DB_PASSWORD='<redacted>'
-```
-
-Next aim is to Productionise it properly and add 'Under Development' signage in places like 'Reset Password'.  

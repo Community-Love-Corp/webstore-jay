@@ -32,7 +32,12 @@
 
 	<p style="text-align: justify;">- "If an area was subjugated ‘by force of arms’, part of the population was put to death or enslaved; those who escaped such a fate were constrained to pay heavy taxes, or were forced to emigrate, or had to conclude an agreement with the victors at great disadvantage to themselves (Iskender-Mochiri & Kolesnikov, 1997, Pg. 462)."</p>	
 	
-	<p style="text-align: justify;" class="indent">&nbsp; &nbsp;My ancestors despite at times unbelievable odds stuck around in Multan, due to our inseparable ancient temple of HIS[HER/THEIR]  HOLINESS LATE devotee Prahalad - 'The Prahalad Puri Temple' - Palace location where Śrī Śrī Bhagavān Rādhā-Kṛṣṇa took Avatar to defend the five year old devotee Prince Prahlad</p> 
+	<p style="text-align: justify;" class="indent">&nbsp; &nbsp;Here is an image of the loot from the initial raid of my native city 'Multan' and Sindh by the Caliphate about 1300 years ago- Kafir Princess Surya Devi for sale in the Arab slave market:
+	
+	        <p><img src="images/Surya.jpg" alt="Princess for sale." style="center-image;width:600px;"></p> 
+	
+	
+	My ancestors despite at times such unbelievable odds still stuck around in Multan, due to our inseparable ancient temple of HIS[HER/THEIR]  HOLINESS LATE devotee Prahalad - 'The Prahalad Puri Temple' - Palace location where Śrī Śrī Bhagavān Rādhā-Kṛṣṇa took Avatar to defend the five year old devotee Prince Prahlad</p> 
 	
 		   <p><i id="mm1ancestors" style="text-align: center;"> Item 1: Ancestral temple</i></p>	
 
