@@ -352,3 +352,6 @@ DB_PASSWORD='<redacted>'
 ```
 
 Next aim is to Productionise it properly and add 'Under Development' signage in places like 'Reset Password'.  
+
+![App operational in Production]
+(./public/screenshots/Dashboard.jpg)
