@@ -381,3 +381,13 @@ GRANT ALL PRIVILEGES ON systema1_systematicdefence_tech.* TO 'systema1_wp552'@'l
 php artisan migration:fresh
 
 ![Production App operational locally, with only host value in .env updated to 127.0.0.1](./public/screenshots/Build3_02.jpg)
+## Kali Linux version 3.03 - Production App fully operational locally except live payment
+setup all the data via seeding. Ran:
+- php artisan db:seed
+
+
+![App operational in Production](./public/screenshots/seeding-successful.jpg)
+
+Finally, updated paypal to real keys. Bug:
+
+![App operational in Production](./public/screenshots/seeding-bug.jpg)
