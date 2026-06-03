@@ -357,3 +357,27 @@ Next aim is to Productionise it properly and add 'Under Development' signage in 
 
 ## Kali Linux version 3.01
 Consolidation of working production locally.
+
+## Kali Linux version 3.02 - Production App operational locally, with only host value in .env updated to 127.0.0.1
+I pull the code of my live website in previous commit. It has no vendor or nodemodules folders because .gitignore prevented that from coming down. So running 'npm run dev', gets me error 'sh:1:vite:not found'. The fix:
+a. composer install
+b. npm install
+c. npm run build
+d. php artisan serve
+e. npm run dev
+
+CREATE USER 'systema1_wp552'@'127.0.0.1' IDENTIFIED BY '<password>'
+CREATE USER 'systema1_wp552'@'localhost' IDENTIFIED BY '<password>'
+GRANT ALL PRIVILEGES ON blog_systematicdefence_tech.* TO 'systema1_wp552'@'127.0.0.1';
+GRANT ALL PRIVILEGES ON blog_systematicdefence_tech.* TO 'systema1_wp552'@'localhost';
+FLUSH PRIVILEGES;
+/opt/lampp/bin/mysql -u systema1_wp552 -p blog_systematicdefence_tech;
+
+All of above worked, but UI gave me error SQLSTATE[42S02]. So I ran 'php artisan migration' cmd and this failed as code was geared to production database. So, I changed local .env to point to db with name same as production database and reran command. Fixed via:
+
+CREATE DATABASE systema1_systematic_defence; 
+GRANT ALL PRIVILEGES ON systema1_systematicdefence_tech.* TO 'systema1_wp552'@'127.0.0.1';
+GRANT ALL PRIVILEGES ON systema1_systematicdefence_tech.* TO 'systema1_wp552'@'localhost';
+php artisan migration:fresh
+
+![Production App operational locally, with only host value in .env updated to 127.0.0.1](./public/screenshots/Build3_02.jpg)
