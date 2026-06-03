@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Models\Order;
@@ -14,10 +15,18 @@ class PayPalController extends Controller
 {
     private function auth()
     {
-        return Http::withBasicAuth(
-            config('paypal.client_id'),
-            config('paypal.secret')
-        );
+            if(config('paypal.mode')=='live') {
+                return Http::withBasicAuth(
+                    config('paypal.client_id'),
+                    config('paypal.secret')
+                 );
+            }else{
+                return Http::withBasicAuth(
+                    config('paypal.client_id_sandbox'),
+                    config('paypal.secret_sandbox')
+                    );
+            }
+        
     }
 
     public function create(Product $product)
@@ -31,8 +40,13 @@ class PayPalController extends Controller
             'status'     => 'pending',
             'user_id'    => $user->id,
         ]);
+       if(config('paypal.mode')=='live') {
+           $endpoint = config('paypal.endpoint');
+        }else{
+            $endpoint =config('paypal.endpoint_sandbox');;
+        }
         
-        $response = $this->auth()->post('https://api-m.sandbox.paypal.com/v2/checkout/orders', [
+        $response = $this->auth()->post($endpoint, [
             'intent' => 'CAPTURE',
             'purchase_units' => [[
                 'amount' => [
@@ -47,6 +61,12 @@ class PayPalController extends Controller
         ]);
         
         $paypal = $response->json();
+        //dd($response->json());
+        
+        if (!isset($paypal['id'])) {
+            Log::error('PayPal Live Error', $paypal);
+            throw new \Exception('PayPal did not return an order ID');
+        }
         $order->paypal_order_id = $paypal['id'];
         $order->save();
         
@@ -105,10 +125,16 @@ class PayPalController extends Controller
         $order->status = 'paid';
         $order->paypal_capture_id = $capture['purchase_units'][0]['payments']['captures'][0]['id'];
         $order->save();*/
+        if(config('paypal.mode')=='live') {
+            $endpoint = config('paypal.endpoint');
+        }else{
+            $endpoint =config('paypal.endpoint_sandbox');;
+        }
+        
         
         $response = $this->auth()
         ->withBody('', 'application/json')
-        ->post("https://api-m.sandbox.paypal.com/v2/checkout/orders/{$order->paypal_order_id}/capture");
+        ->post("{$endpoint}/{$order->paypal_order_id}/capture");
         
         $capture = $response->json();
         

@@ -391,3 +391,15 @@ setup all the data via seeding. Ran:
 Finally, updated paypal to real keys. Bug:
 
 ![App operational in Production](./public/screenshots/seeding-bug.jpg)
+## Kali Linux version 4.00 - Production App fully operational
+
+Email Working:
+
+![App operational in Production](./public/screenshots/build_4.jpg)
+
+Live Purchase working:
+
+![App operational in Production](./public/screenshots/live-paypal-transaction-successful.jpg)
+
+How: 
+Added paypal environment variables for live endpoint, live client, live password and mode to enable switching between sandbox and live environments. For it to work, config/paypal.php also had to be updated accordingly. Wired up email via adding environment variables. Finally, updated database variables to suit Production. 
