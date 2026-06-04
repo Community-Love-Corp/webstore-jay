@@ -1,0 +1,7 @@
+[03-Jun-2026 23:47:08 UTC] PHP Fatal error:  Uncaught RuntimeException: Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.4.0". You are running 8.2.31. in /home/systema1/blog.systematicdefence.tech/vendor/composer/platform_check.php:22
+Stack trace:
+#0 /home/systema1/blog.systematicdefence.tech/vendor/composer/autoload_real.php(25): require()
+#1 /home/systema1/blog.systematicdefence.tech/vendor/autoload.php(22): ComposerAutoloaderInitfc7b55a3afaab68d74c0c7fd3c10989c::getLoader()
+#2 /home/systema1/blog.systematicdefence.tech/artisan(10): require('/home/systema1/...')
+#3 {main}
+  thrown in /home/systema1/blog.systematicdefence.tech/vendor/composer/platform_check.php on line 22
