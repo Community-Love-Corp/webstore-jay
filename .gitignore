@@ -23,6 +23,7 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 canarylocalbuild_v1.47.zip
+<<<<<<< HEAD
 *.zip
 .env
 .env.*

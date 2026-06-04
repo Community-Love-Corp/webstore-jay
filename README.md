@@ -278,3 +278,7 @@ php artisan migrate
 ## Kali linux 2.10
 21 May 10:47 PM: 
 Preparation for merge with GitHub repository.
+
+
+## Kali linux 2.11
+Merging with branch from Production Main branch, after successful pull.
