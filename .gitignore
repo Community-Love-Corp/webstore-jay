@@ -24,3 +24,4 @@ Homestead.yaml
 Thumbs.db
 canarylocalbuild_v1.47.zip
 *.zip
+.env.*
