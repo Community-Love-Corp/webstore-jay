@@ -294,3 +294,6 @@ Improved code and feedback loops. See Dockersie Applicaton Change Log Version 2.
 ## Kali linux 2.13 HOTFIX
 26 May 2026: 
 Added details of Pull Request in 'DockeriseApplicaton.md' 
+
+## Kali linux 2.14 
+04 June 2026: merged local with Github
