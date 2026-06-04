@@ -402,4 +402,18 @@ Live Purchase working:
 ![App operational in Production](./public/screenshots/live-paypal-transaction-successful.jpg)
 
 How: 
-Added paypal environment variables for live endpoint, live client, live password and mode to enable switching between sandbox and live environments. For it to work, config/paypal.php also had to be updated accordingly. Wired up email via adding environment variables. Finally, updated database variables to suit Production. 
+Added paypal environment variables for live endpoint, live client, live password and mode to enable switching between sandbox and live environments. For it to work, config/paypal.php also had to be updated accordingly. Wired up email via adding environment variables. Finally, updated database and app variables to suit Production. 
+
+Once In Production, run: 
+
+a) to upload data:
+
+/opt/alt/php84/usr/bin/php artisan db:seed
+
+b) recreate sym link, so images can display
+
+/opt/alt/php84/usr/bin/php artisan storage:link
+
+Proof of working app:
+
+![App fully operational in Production](./public/screenshots/build-4-working-in-prod.jpg)
