@@ -227,6 +227,7 @@ git remote remove origin
 d. Push local 'fastcomet-github' branch to Github to create branch 'fastcomet' there
 
 ```bash
+git remote add origin git@github.com:Community-Love-Corp/webstore-jay.git
 git push origin fastcomet
 ```
 
