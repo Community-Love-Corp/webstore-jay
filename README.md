@@ -422,4 +422,7 @@ Proof of working app:
 06 June 2026 12:33 PM: Created 'Standard Operating Procedures'/SOP for deployment to production - See cookbook/deployment.md. 
 
 ### Kali Linux version 4.02 - Production build and cleaned up for Production deployment 
-SATURDAY 06 June 2026 04:53 HOURS: Updated 'Standard Operating Procedures'/SOP for deployment to production- See cookbook/deployment.md sections  4.2.3 and 6.2.1. 
+SATURDAY 06 June 2026 16:53 HOURS: Updated 'Standard Operating Procedures'/SOP for deployment to production- See cookbook/deployment.md sections  4.2.3 and 6.2.1. 
+
+### Kali Linux version 4.03 - Deployment to Production successful
+SATURDAY 06 June 2026 19:45 HOURS: Updated 'Standard Operating Procedures'/SOP for deployment to production- See cookbook/deployment.md sections 7.0 Troubleshooting. The app is working again in Production, and Github does not show commerically sensitive information anymore. Automation of deployment could not be achieved as some essential files do not exist in Github and need to be manually setup after git pull from Production. 

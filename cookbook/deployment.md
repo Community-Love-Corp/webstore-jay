@@ -266,12 +266,185 @@ $PHP84 artisan cache:clear
 
 $PHP84 artisan route:clear 
 
-$PHP84 artisan view:clear 
+$PHP84 artisan view:clear # Note this failed, see 'Section 7 Troubleshooting' below 
 
 $PHP84 artisan optimize:clear 
 
 ```
+
+
 The benefit will be that the new 'fastcomet' branch in Github will have no history, and if I delete it, nothing is lost.
 
+## 7.0 Troubleshooting
 
-## 7.0 Conclusion
+During implementation two issues creeped up, inside project in fastcomet:
+
+1. In production, the contents of the /storage/app/public/docs folder were wiped. I manually uploaded the doc from my local project to resolve it.
+2. The app brings back 'HTTPS 500' on front end, inaddition to artisan view command failing. This is resolved and tested in Appendix 1.0.
+
+
+Appendix 1.0
+
+```bash
+
+[systema1@s4710 blog.systematicdefence.tech]$ $PHP84 artisan optimize:clear 
+
+  
+
+   INFO  Clearing cached bootstrap files. 
+
+  
+
+  config ....................................................................................................................... 0.85ms DONE 
+
+  cache ........................................................................................................................ 2.57ms DONE 
+
+  compiled ..................................................................................................................... 0.82ms DONE 
+
+  events ....................................................................................................................... 0.39ms DONE 
+
+  routes ....................................................................................................................... 0.41ms DONE 
+
+  views ........................................................................................................................ 0.15ms FAIL 
+
+  
+
+   RuntimeException 
+
+  
+
+  View path not found. 
+
+  
+
+  at vendor/laravel/framework/src/Illuminate/Foundation/Console/ViewClearCommand.php:58 
+
+     54▕     { 
+
+     55▕         $path = $this->laravel['config']['view.compiled']; 
+
+     56▕ 
+
+     57▕         if (! $path) { 
+
+  ➜  58▕             throw new RuntimeException('View path not found.'); 
+
+     59▕         } 
+
+     60▕ 
+
+     61▕         $this->laravel['view.engine.resolver'] 
+
+     62▕             ->resolve('blade') 
+
+  
+
+      +28 vendor frames 
+
+  
+
+  29  artisan:16 
+
+      Illuminate\Foundation\Application::handleCommand() 
+
+  
+
+[systema1@s4710 blog.systematicdefence.tech]$ $PHP84 artisan tinker 
+
+Psy Shell v0.12.22 (PHP 8.4.21 — cli) by Justin Hileman 
+
+New PHP manual is available (latest: 3.0.5). Update with `doc --update-manual` 
+
+  
+
+> config('view.compiled') 
+
+  
+
+= false 
+
+  
+
+Terminated 
+
+[systema1@s4710 blog.systematicdefence.tech]$ ls -ld storage/framework/views 
+
+ls: cannot access 'storage/framework/views': No such file or directory 
+
+[systema1@s4710 blog.systematicdefence.tech]$ mkdir -p storage/framework/views 
+
+[systema1@s4710 blog.systematicdefence.tech]$ chmod -R 775 storage 
+
+[systema1@s4710 blog.systematicdefence.tech]$ chmod -R 775 storage/framework 
+
+[systema1@s4710 blog.systematicdefence.tech]$ chmod -R 775 storage/framework/views 
+
+[systema1@s4710 blog.systematicdefence.tech]$ rm -f bootstrap/cache/*.php 
+
+[systema1@s4710 blog.systematicdefence.tech]$ $PHP84 artisan config:clear 
+
+  
+
+   INFO  Configuration cache cleared successfully. 
+
+  
+
+[systema1@s4710 blog.systematicdefence.tech]$ $PHP84 artisan optimize:clear 
+
+  
+
+   INFO  Clearing cached bootstrap files. 
+
+  
+
+  config ....................................................................................................................... 0.79ms DONE 
+
+  cache ........................................................................................................................ 2.48ms DONE 
+
+  compiled ..................................................................................................................... 0.74ms DONE 
+
+  events ....................................................................................................................... 0.39ms DONE 
+
+  routes ....................................................................................................................... 0.37ms DONE 
+
+  views ........................................................................................................................ 3.02ms DONE 
+
+  
+
+[systema1@s4710 blog.systematicdefence.tech]$ $PHP84 artisan config:cache 
+
+  
+
+   INFO  Configuration cached successfully. 
+
+  
+
+[systema1@s4710 blog.systematicdefence.tech]$ $PHP84 artisan view:clear 
+
+  
+
+   INFO  Compiled views cleared successfully. 
+
+  
+
+[systema1@s4710 blog.systematicdefence.tech]$ $PHP84 artisan tinker 
+
+Psy Shell v0.12.22 (PHP 8.4.21 — cli) by Justin Hileman 
+
+New PHP manual is available (latest: 3.0.5). Update with `doc --update-manual` 
+
+  
+
+> config('view.compiled') 
+
+  
+
+= "/home/systema1/blog.systematicdefence.tech/storage/framework/views" 
+
+  
+
+Terminate
+```
+
+
+## 8.0 Conclusion
