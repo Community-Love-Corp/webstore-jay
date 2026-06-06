@@ -160,7 +160,7 @@ $PHP84 artisan storage:link
 
 echo "Deployment complete!" 
 ```
-### 5.2 Setup script and run it
+### 5.2 Setup script and run it (if applicable)
 
 #### 5.2.1 Setup
 When pushed into fastcomet, do following:
