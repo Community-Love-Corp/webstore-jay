@@ -20,6 +20,6 @@ canarylocalbuild_v1.47.zip
 *.zip
 .env
 .env.*
-papers
-public/documents
-storage/app/public/docs/
+/papers
+/public/documents
+/storage/app/public/docs
