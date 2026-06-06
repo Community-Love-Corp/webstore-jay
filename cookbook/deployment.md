@@ -193,15 +193,42 @@ iv. public/documents
 
 v. storage/app/public/docs/
 
+b. Explicitly untrack these folders
+
+```bash
+git rm -r --cached storage/app/public/docs
+git rm -r --cached papers
+git rm -r --cached public/documents
+```
+c. Verify folders no longer tracked
+
+```bash
+git ls-files | grep doc
+```
+
 #### 6.2.2 STEPS
 
 a. In local repo 'webstore-jay' branch 'fastcomet', commit your changes.
 
+
 b. Create new branch - fastcomet-github
+
+```bash
+git checkout -b fastcomet-github
+```
+
 
 c. Delete fastcomet branch in github. Also remove local fastcomet branch's connection to Github.
 
+```bash
+git remote remove origin 
+```
+
 d. Push local 'fastcomet-github' branch to Github to create branch 'fastcomet' there
+
+```bash
+git push origin fastcomet
+```
 
 e. Delete local 'fastcomet-github' branch
 
