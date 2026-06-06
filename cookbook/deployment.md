@@ -195,11 +195,15 @@ i. .env
 
 ii. .env.*
 
-iii. papers
+iii. papers/*
 
-iv. public/documents
+iv. public/documents/*
 
-v. storage/app/public/docs/
+v. storage/app/public/docs/*
+
+vi. storage/framework/views/* (contain compiled blades from local instance)
+
+vii. bootstrap/cache/*.php (Contain vite values from local instance)
 
 b. Explicitly untrack these folders
 
@@ -207,6 +211,8 @@ b. Explicitly untrack these folders
 git rm -r --cached storage/app/public/docs
 git rm -r --cached papers
 git rm -r --cached public/documents
+git rm -r --cached bootstrap/cache/*.php
+git rm -r --cached storage/framework/views/*
 ```
 c. Verify folders no longer tracked
 

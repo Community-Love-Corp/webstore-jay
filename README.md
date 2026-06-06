@@ -418,5 +418,8 @@ Proof of working app:
 
 ![App fully operational in Production](./public/screenshots/build-4-working-in-prod.jpg)
 
-## Kali Linux version 4.01 - SOP for deployment
+### Kali Linux version 4.01 - SOP for deployment
 06 June 2026 12:33 PM: Created 'Standard Operating Procedures'/SOP for deployment to production - See cookbook/deployment.md. 
+
+### Kali Linux version 4.02 - Production build and cleaned up for Production deployment 
+SATURDAY 06 June 2026 04:53 HOURS: Updated 'Standard Operating Procedures'/SOP for deployment to production- See cookbook/deployment.md sections  4.2.3 and 6.2.1. 
