@@ -232,6 +232,10 @@ git push origin fastcomet
 
 e. Delete local 'fastcomet-github' branch
 
+```bash
+git branch -D <branch_name>
+```
+
 The benefit will be that the new 'fastcomet' branch in Github will have no history, and if I delete it, nothing is lost.
 
 
