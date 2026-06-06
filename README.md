@@ -417,3 +417,6 @@ b) recreate sym link, so images can display
 Proof of working app:
 
 ![App fully operational in Production](./public/screenshots/build-4-working-in-prod.jpg)
+
+## Kali Linux version 4.01 - SOP for deployment
+06 June 2026 12:33 PM: Created 'Standard Operating Procedures'/SOP for deployment to production - See cookbook/deployment.md. 
