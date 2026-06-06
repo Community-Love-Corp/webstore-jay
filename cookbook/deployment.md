@@ -61,7 +61,15 @@ DB_DATABASE=prod_db
 DB_USERNAME=prod_user 
 DB_PASSWORD=prod_pass 
  
-### 4.2.3 How to tell fastcomet to use .env.production?
+### 4.2.3 Push changes to fastcomet
+
+On the local machine, when the command 'npm run dev' is run, Vite generates dev-mode artifacts. When command 'npm run build' is run, Vite generates production artifacts. 
+
+So, run 'npm run build'. Then push to fastcomet using section 6.2.
+
+
+### 4.2.4 How to tell fastcomet to use .env.production?
+
 
 After pushing to FastComet, rename: 
 
@@ -71,7 +79,7 @@ Note: Laravel always loads .env — not .env.production.
 
 ## 5.0 CHALLENGE 2 - How to automate manage switch over between production and local environment variables in Production?
 
-### 5.1 Create Automation script
+### 5.1 Create Automation script (only useful if local repo is directly connected to fastcomet repo)
 
 Create file 'deploy.sh' in scripts folder:
 
@@ -237,6 +245,26 @@ e. Delete local 'fastcomet-github' branch
 git branch -D <branch_name>
 ```
 
+f. Clear caches in fastcomet
+
+```bash
+PHP84="/opt/alt/php84/usr/bin/php" 
+
+  
+
+echo "Clearing Laravel caches..." 
+
+$PHP84 artisan config:clear 
+
+$PHP84 artisan cache:clear 
+
+$PHP84 artisan route:clear 
+
+$PHP84 artisan view:clear 
+
+$PHP84 artisan optimize:clear 
+
+```
 The benefit will be that the new 'fastcomet' branch in Github will have no history, and if I delete it, nothing is lost.
 
 

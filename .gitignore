@@ -23,3 +23,6 @@ canarylocalbuild_v1.47.zip
 /papers
 /public/documents
 /storage/app/public/docs
+bootstrap/cache/*.php
+#compiled blades
+storage/framework/views/*
