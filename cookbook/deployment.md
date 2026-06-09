@@ -280,8 +280,9 @@ The benefit will be that the new 'fastcomet' branch in Github will have no histo
 During implementation two issues creeped up, inside project in fastcomet:
 
 1. In production, the contents of the /storage/app/public/docs folder were wiped. I manually uploaded the doc from my local project to resolve it.
-2. The app brings back 'HTTPS 500' on front end, inaddition to artisan view command failing. This is resolved and tested in Appendix 1.0.
+2. The app brings back 'HTTPS 500' on front end, inaddition to artisan view command failing. Basically 'storage/framework/views' folder was missing. This is resolved and tested in Appendix 1.0.
 
+I had specifically made sure that these two folders do not leave the local repository by adding them to .gitignore, as they either contain or are linked to sensitive information. However, when the repo reaches fastcomet, they become needed again. Hence this section is needed to ressurect them in Production.  
 
 Appendix 1.0
 
