@@ -1,4 +1,5 @@
 
+
 <html>
         <head>
              <meta charset="UTF-8"> 
@@ -50,6 +51,12 @@
                       <td>Sarna, J.</td>
                       <th>08 May 2026</th>
                       <th>Added context information about Śrīmad Bhagavad Gītā, and my connect to it as my "Mother's Day 2026 gift" to Her (MatchlessGifts, 2021, Jul, 2, 49:00- 52:46).</th>
+                    </tr>
+                    <tr>
+                      <td>1.1</td>
+                      <td>Sarna, J.</td>
+                      <th>08 June 2026</th>
+                      <th>Added section 4.4.</th>
                     </tr>
                   </tbody>
                 </table>
@@ -135,9 +142,12 @@
     <p style="text-align: left;"> Feel deep compassion for them. Genuinely try to uplift them. Do not misuse your superiority in the situation.</p>
     <h4 id="433novice">4.3.3 Feeling Towards an Equal</h4> 
     <p style="text-align: left;">Become friends. Be genuine well wisher and try to uplift each other. Do not boast or show off.</p>
+    <h4 id="44healing">4.4 Self Healing</h4> 
+    <p style="text-align: left;">The best way to self heal is to know 'when to stop', because of saying 'Prevention is better than cure'. This is where the oath book (Commentary from Gita Press Gorakhpur's Śri Vaiṣṇava Mahārāja Ramsukhdas ji) is most helpful, as it points out that for standard humans:</p>
+    <p style="text-align: left;">A man should (continue to) do his duties (enjoined upon him by the  Śāstras- whether of an obligatory nature or those of an occasional type) so long as he [she/they] does not get disgusted with the pleasures of sense nor deeply attached (develop likes and dislikes) to them or so long as keenness does not appear in him [her/them] for listening to my stories etc  (Śrīmad-Bhāgavata 11/20/9) [I believe the latter can be done parallely with obligatory duties, like my <a href="https://www.facebook.com/profile.php?id=61573041203371">facebook public profile</a>.](Vedavyas, 2010, Pg. 607). Here question may arise, if we dedicated ourselves to God, who will feed us and our families. Answer is 'Gratitude to God' as per Verse 25 of MaHĀBHĀRATA Vana Parva's (Book of the Forest) Draupadī-haraṇa Parva's (The book of the abduction of Draupadī) chapter 263 (Vedavyāsa, 2024 Pg. 834).</p>
 
 <p style="text-align: left;">* Lord Rāma declares, "I can enter fire, can eat deadly poison and can jump into the sea in order to carry out the order of My father (Vālmīki Rāmāyaņa, Ayodhyā. 18/28-29)".</p>
-<p style="text-align: left;">Source: Section 4.1 and 4.2 are sourced from Chapter 4 Verse 11 (Das, 2006, Pg. 490)</p>
+<p style="text-align: left;">Source: Section 4.1 and 4.2 are sourced from Chapter 4 Verse 11 (Ramsukhsas, 2006, Pg. 490). Section 4.4 is sourced from Chapter 4 Verse 15 (Ramsukhdas, 2006, Pg. 501)</p>
 </div>
         <div class="auth-box-main">
 <p style="text-align: left;">NOTE: In order to support LGBTQI+ (Gender Minorities Aotearoa, 2026) as per Annex A (Wilton, 2022), LGBTQI+ complaint english has been used on this page.</p>        
@@ -149,14 +159,14 @@
         <h2 id="6references">6.0 REFERENCES </h2>
         <p>-------------</p>
 
-<p style="text-align: left;">⁠1. Das, R.(2006). Śrīmad Bhagavadgītā Sādhaka-Sañjīvanī [with Appendix] Vol. I Commentary [With Sanskrit text, Transliteration and English Translation] (Translated into English by S. C. Vaishya) Revised by R.N. Kaul & Kesnoran Aggarwal. Published by Gita Press Gorakhpur.
+<p style="text-align: left;">⁠1. Ramsukhdas, S.(2006). Śrīmad Bhagavadgītā Sādhaka-Sañjīvanī [with Appendix] Vol. I Commentary [With Sanskrit text, Transliteration and English Translation] (Translated into English by S. C. Vaishya) Revised by R.N. Kaul & Kesnoran Aggarwal. Published by Gita Press Gorakhpur.
 <br><br>2. Gender Minorities Aotearoa.(2026). Gender Minorities Aotearoa - Supporting Transgender People: Course curriculum. https://transgender.thinkific.com/courses/transgender-support. Last Accessed : 30 April 2026
 <br><br>3. Wilton, C. (2022). Counting Ourselves- Findings from the 2022 Aotearoa New Zealand Trans & Non-Binary Health Survey. https://countingourselves.nz/wp-content/uploads/2025/09/Counting-Ourselves_2022-Findings_DIGITAL_v10.pdf
 <br><br>4. Kadamba Kanana Swami.(2023, April, 25). YouTube- Be yourself, Part 2. https://www.youtube.com/shorts/hxHp8sCpltk
 <br><br>5. rgmedia108.(2018, Jan, 19). YouTube- The amazing story of DHRUVA | HH RADHANATH SWAMI | 19 Jan 2018. https://youtu.be/woptcQqUYzk?si=xOK8thoUOVV2oQ6g
 <br><br>6. MatchlessGifts.(2021, Jul, 2). YouTube- The Journey Home (H.H. Radhanath Swami Maharaj) - Part 3 "Himalayan Pilgrimage"- Radhanath Swami. Source: https://www.youtube.com/watch?v=R5bv0qqWE8k. Last Accessed- 21 May 2026.</p>
-
-
+<br><br>7. Vedavyāsa, M.(2010). Śrīmad-Bhāgavata Mahāpurāņa (With Sanskrit Text and English Translation) Part-II [Book Nine to Twelve]- Rendered into English by Goswami, C. L. & Shastri, M. A- [Code 565, B.M. Part II-29]. Eleventh Reprint. Printed and Published by Gita Press, Gorakhpur.
+<br><br>8. Vedavyāsa, S.(2024). Draupadīharaṇa Parva. Mahābhārata - (Second Volume) Vanaparva and Virāṭaparva, illustrated, simple Hindī - with translation. Translator - Sāhityakārya Paṇḍita Rāmanārāyaṇadatta Śāstrī Pāṇḍeya 'Rām'. Publisher and Printer - Gītā Pres Gorakhpur.
         <h2 id="7annexa">7.0 Annex A</h2>
         <p>-------------</p>
 <p style="text-align: left;">The 2022 *Counting Ourselves* survey is the largest national study of trans and non‑binary health in Aotearoa New Zealand, with **2,631 participants**. It shows **persistent and widespread unmet need** across gender‑affirming healthcare, mental health, safety, discrimination, and basic wellbeing. It also highlights **strong community pride, resilience, and connection** (Wilton, 2022).</p>

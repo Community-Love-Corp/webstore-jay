@@ -128,7 +128,19 @@ The store funtion firstly validates that all the required variables and recaptch
 		..
 ```
 
+## Directory Traversal (OWASP A01:2021 - Broken Access Control)
+
+### PROBLEM
+
+#### URL
+
+![URL for Directory Traversal](../public/screenshots/purchase-url.jpg)
+
+#### URL Exploited
+
+![Directory Traversal in Action](../public/screenshots/directory-traversal-evidence.jpg)
+
+
 ## Conclusion
 
 ## References
-

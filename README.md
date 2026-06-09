@@ -426,3 +426,6 @@ SATURDAY 06 June 2026 16:53 HOURS: Updated 'Standard Operating Procedures'/SOP f
 
 ### Kali Linux version 4.03 - Deployment to Production successful
 SATURDAY 06 June 2026 19:45 HOURS: Updated 'Standard Operating Procedures'/SOP for deployment to production- See cookbook/deployment.md sections 7.0 Troubleshooting. The app is working again in Production, and Github does not show commerically sensitive information anymore. Automation of deployment could not be achieved as some essential files do not exist in Github and need to be manually setup after git pull from Production. 
+
+## Kali Linux version 4.04
+MONDAY 9 June 2026 10:43 HOURS: Updates to humanity.php and life.html. Also identified broken access control vulnerability - See cookbook/security-hardening.md. 
