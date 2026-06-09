@@ -26,5 +26,6 @@
         </form>
 
         <x-media-upload />
+        <x-purchase-media-upload />
     </div>
 </x-app-layout>

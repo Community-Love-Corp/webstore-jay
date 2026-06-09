@@ -232,7 +232,7 @@ git checkout -b fastcomet-github
 ```
 
 
-c. Delete fastcomet branch in github. Also remove local fastcomet branch's connection to Github.
+c. Delete fastcomet branch in github. Even if you don't for whatever reason, remove local fastcomet branch's connection to Github.
 
 ```bash
 git remote remove origin 

@@ -31,3 +31,20 @@ C:\Users\moose\git\blog-systematicdefence-tech>php artisan route:list
   PUT       storage/{path} storage.local.upload › vendor/laravel/framewor…
   GET|HEAD  up vendor/laravel/framework/src/Illuminate/Foundation/Configu…
 ```
+
+3. View logs
+
+```
+cat storage/logs/laravel
+```
+
+4. Add a field to table in database and roll back
+
+```
+php artisan make:migration add_download_filename_to_products_table
+php artisan migrate
+
+#Rollback
+
+php artisan migrate:rollback --step=1
+```

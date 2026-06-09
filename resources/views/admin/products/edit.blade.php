@@ -45,6 +45,7 @@
 
         <div class="mt-8">
             <x-media-upload />
+        	<x-purchase-media-upload />
         </div>
     </div>
 </x-app-layout>

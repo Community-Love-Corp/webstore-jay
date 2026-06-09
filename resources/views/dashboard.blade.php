@@ -21,6 +21,40 @@ function render_placeholders($html) {
 
     return $html;
 }
+function render_purchase_placeholder($html, $product = null) {
+    if (! $html) return '';
+
+    // IMAGE
+    $html = preg_replace_callback('/\{\{\s*IMAGE:(.*?)\s*\}\}/', function ($m) {
+        $filename = trim($m[1]);
+        return '<img src="' . url('storage/pages/' . $filename) . '" class="auth-img">';
+    }, $html);
+
+    // AUDIO
+    $html = preg_replace_callback('/\{\{\s*AUDIO:(.*?)\s*\}\}/', function ($m) {
+        $filename = trim($m[1]);
+        return '<audio controls><source src="' . url('storage/audio/' . $filename) . '" type="audio/mpeg"></audio>';
+    }, $html);
+
+    // VIDEO
+    $html = preg_replace_callback('/\{\{\s*VIDEO:(.*?)\s*\}\}/', function ($m) {
+        $filename = trim($m[1]);
+        return '<video controls width="100%"><source src="' . url('storage/video/' . $filename) . '" type="video/mp4"></video>';
+    }, $html);
+
+    // FILE (generic paid download)
+    $html = preg_replace_callback('/\{\{\s*FILE\s*\}\}/', function () use ($product) {
+        if (! $product || ! $product->download_filename) {
+            return '<p class="text-red-600">File not available.</p>';
+        }
+
+        $url = route('file.show', $product->slug);
+
+        return '<a href="' . $url . '" target="_blank" class="text-blue-600 underline">View File</a>';
+    }, $html);
+
+    return $html;
+}
 @endphp
 
 <x-app-layout>
@@ -81,7 +115,7 @@ function render_placeholders($html) {
                     
                     @if($hasPurchased)
                         <hr class="my-4">
-                        {!! render_placeholders($product->full_html) !!}
+                        {!! render_purchase_placeholder($product->full_html, $product) !!}
                     @endif
                 </td>
             </tr>

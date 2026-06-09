@@ -429,3 +429,6 @@ SATURDAY 06 June 2026 19:45 HOURS: Updated 'Standard Operating Procedures'/SOP f
 
 ## Kali Linux version 4.04
 MONDAY 9 June 2026 10:43 HOURS: Updates to humanity.php and life.html. Also identified broken access control vulnerability - See cookbook/security-hardening.md. 
+
+## Kali Linux version 4.05
+MONDAY 9 June 2026 17:30 HOURS: Added the code for upload-purchase. It has not worked. However, I have a plan to fix it.
