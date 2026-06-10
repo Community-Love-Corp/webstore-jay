@@ -3,13 +3,37 @@
 
     <form action="/admin/upload-purchase" method="POST" enctype="multipart/form-data">
         @csrf
+
+        <!-- <input type="hidden" id="upload_abstract_html" name="abstract_html">
+        <input type="hidden" id="upload_full_html" name="full_html">
+        <input type="hidden" id="upload_slug" name="slug">
+        <input type="hidden" id="upload_title" name="title">
+        <input type="hidden" id="upload_price" name="price">
+        <input type="hidden" id="upload_is_locked" name="is_locked">
+        <input type="hidden" id="upload_content" name="content">-->
+
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    @if(session('uploaded'))
+        <p>Use this placeholder in your content:</p>
+        <code>{{ session('uploaded') }}</code>
+    @endif
+</div>
+
+<!-- <div>
+    <h3>Upload Purchase Item For Sale</h3>
+
+    <form action="/admin/upload-purchase" method="POST" enctype="multipart/form-data">
+        @csrf
         <input type="hidden" id="upload_abstract_html" name="abstract_html">
         <input type="hidden" id="upload_full_html" name="full_html">
 
         <input type="hidden" id="upload_title" name="title">
         <input type="hidden" id="upload_price" name="price">
 		<input type="hidden" id="upload_is_locked" name="is_locked">
-        <input type="hidden" id="upload_content" name="content">-->
+        <input type="hidden" id="upload_content" name="content">
         <input type="hidden" id="upload_slug" name="slug" >
         <input type="file" name="file" required>
 
@@ -47,3 +71,4 @@
         });
     </script>
 </div>
+-->

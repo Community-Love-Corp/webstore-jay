@@ -8,6 +8,12 @@
 
 First Draft on 25 May 2026
 
+| Version | Date         | Author    | Description    |
+|---------|--------------|-----------|----------------|
+| 0.1     | 25 May 2026  | Sarna, J. | Initial Draft  |
+| 0.1     | 10 June 2026 | Sarna, J. | Fixed Broken Access Control - Directory Traversal Vulnerability
+
+
 ### Table of Contents
 
 ### Table of Figures
@@ -139,6 +145,14 @@ The store funtion firstly validates that all the required variables and recaptch
 #### URL Exploited
 
 ![Directory Traversal in Action](../public/screenshots/directory-traversal-evidence.jpg)
+
+### RESOLUTION
+
+Basically, a new upload component was added in the higher priviledge user portal to handle purchase uploads. Details coming.
+
+#### RESOLUTION OUTCOME
+
+![Directory Traversal in Action](../public/screenshots/directory-traversal-fixed.jpg)
 
 
 ## Conclusion

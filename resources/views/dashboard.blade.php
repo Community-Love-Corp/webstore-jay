@@ -18,6 +18,13 @@ function render_placeholders($html) {
     $html = preg_replace_callback('/\{\{PDF:(.*?)\}\}/', fn($m) =>
         '<iframe src="' . url('storage/docs/' . trim($m[1])) . '" width="100%" height="600px"></iframe>'
     , $html);
+    
+    // PURCHASE FILE
+	$html = preg_replace_callback('/\{\{\s*PURCHASE:(.*?)\s*\}\}/', function ($m) {
+        $filename = trim($m[1]);
+        $url = route('purchase.file', $filename);
+        return '<a href="' . $url . '" target="_blank" class="text-blue-600 underline">View Purchase File</a>';
+	}, $html);
 
     return $html;
 }
@@ -115,7 +122,8 @@ function render_purchase_placeholder($html, $product = null) {
                     
                     @if($hasPurchased)
                         <hr class="my-4">
-                        {!! render_purchase_placeholder($product->full_html, $product) !!}
+                        <!-- {!! render_purchase_placeholder($product->full_html, $product) !!}-->
+						{!! render_placeholders($product->full_html) !!}	                    
                     @endif
                 </td>
             </tr>

@@ -8,6 +8,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ProductAdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseFileController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProfileController;
 use App\Models\Product;
@@ -110,7 +111,7 @@ Route::middleware(['auth','verified','admin'])->prefix('admin')->group(function 
         
         return back()->withInput()->with('uploaded', 'Unsupported file type: ' . $mime);
     });
-    Route::post('/upload-purchase', function (Request $request) {
+/*    Route::post('/upload-purchase', function (Request $request) {
         //dd('ROUTE HIT', $request->all());
         if (! $request->hasFile('file')) {
             return back()->withInput()->with('uploaded', 'No file uploaded.');
@@ -137,8 +138,22 @@ Route::middleware(['auth','verified','admin'])->prefix('admin')->group(function 
         // placeholder is now generic
         return back()->withInput()->with('uploaded', '{{FILE}}');
     });           
+});*/
+        Route::post('/upload-purchase', function (Request $request) {
+            if (!$request->hasFile('file')) {
+                return back()->withInput()->with('uploaded', 'No file uploaded.');
+            }
+            
+            $file = $request->file('file');
+            $mime = $file->getClientMimeType();
+            
+            // Store ANY file type privately
+            $path = $file->store('docs', 'private');
+            $filename = basename($path);
+            
+            return back()->withInput()->with('uploaded', '{{PURCHASE:' . $filename . '}}');
+        });
 });
-
 Route::middleware(['auth','verified'])->prefix('checkout')->group(function () {       
     //Route::get('/paypal', [PayPalController::class, 'create']);
     Route::post('/paypal/{product:slug}', [PayPalController::class, 'create'])
@@ -170,8 +185,13 @@ Route::get('/pages/{page:slug}', [PageController::class, 'show']);
 Route::get('/products/{product:slug}', [ProductAdminController::class, 'show']);
 
 
-Route::get('/file/{product:slug}', [FileController::class, 'show'])
+/*Route::get('/file/{product:slug}', [FileController::class, 'show'])
 ->middleware('auth')
-->name('file.show');
+->name('file.show');*/
+
+
+Route::get('/purchase-file/{filename}', [PurchaseFileController::class, 'show'])
+->middleware('auth')
+->name('purchase.file');
 
 require __DIR__.'/auth.php';
