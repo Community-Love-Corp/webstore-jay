@@ -25,22 +25,18 @@ jobs:
         coverage: none
 
     - name: Install Composer dependencies
-      working-directory: laravel-playwright-poc
       run: composer install --no-interaction --prefer-dist
 
     - name: Copy .env
-      working-directory: laravel-playwright-poc
-      run: cp .env.example .env
+      run: cp .env .env
 
     - name: Generate app key
-      working-directory: laravel-playwright-poc
       run: php artisan key:generate
 
     # -------------------------------
     # Database Setup (SQLite)
     # -------------------------------
     - name: Setup SQLite database
-      working-directory: laravel-playwright-poc
       run: |
         mkdir -p database
         touch database/database.sqlite
@@ -48,14 +44,12 @@ jobs:
 
     # Optional: Seed test users
     - name: Seed database
-      working-directory: laravel-playwright-poc
       run: php artisan db:seed --force
 
     # -------------------------------
     # Start Laravel Server
     # -------------------------------
     - name: Start Laravel server
-      working-directory: laravel-playwright-poc
       run: php artisan serve --port=8000 &
     
     - name: Wait for Laravel
@@ -89,6 +83,7 @@ jobs:
     # -------------------------------
   
     - name: Run Cucumber BDD Tests
+      working-directory: laravel-playwright-poc
       run: npm run test:bdd 
 
     # -------------------------------
