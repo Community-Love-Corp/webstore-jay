@@ -615,9 +615,9 @@ fixed ci issues. Updated .github/workflows/playwright.yml's 'Run Playwright Test
 SUNDAY 14 June 2026 23:05 HOURS: 
 Updated github/workflows/playwright.yml to setup laravel app as a pre-requisite. 
 
-## Kali Linux fastcomet-github version 4.15
+## Kali Linux fastcomet-github version 4.16
 SUNDAY 15 June 2026 01:20 HOURS: 
-
+a) Fix to .github/workflows/playwright.yml
 Following code hangs because http://127.0.0.1:8000 returns a HTTP 500 error due to permissions issue:
 
 ```
@@ -667,4 +667,8 @@ Run sleep 2
         mkdir -p bootstrap/cache
         chmod -R 777 bootstrap/cache storage
  ```
+ 
+ b) Fix to .github/workflows/laravel.yml
+ Basically, added the capability to upload test reports to ci artifacts, reusing initial code with playwright.yml.
+ 
  
