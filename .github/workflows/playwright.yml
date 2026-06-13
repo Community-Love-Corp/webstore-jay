@@ -26,6 +26,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright Tests
+        working-directory: laravel-playwright-poc
         run: npx playwright test --reporter=html
 
       - name: Run Cucumber BDD Tests
