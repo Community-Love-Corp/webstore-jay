@@ -1,6 +1,6 @@
 console.log("LOADED API SEC");
 import { test, expect } from '@playwright/test';
-import { allure } from 'allure-playwright';
+
 
 test.describe('User API', () => {
 
