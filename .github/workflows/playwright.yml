@@ -14,55 +14,49 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # -------------------------------
-    # PHP + Laravel Setup
-    # -------------------------------
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        extensions: mbstring, intl, sqlite, pdo_sqlite
-        coverage: none
+      # -------------------------------
+      # PHP + Laravel Setup (ROOT)
+      # -------------------------------
 
     - name: Install Composer dependencies
+      working-directory: .
       run: composer install --no-interaction --prefer-dist
 
     - name: Copy .env
-      run: cp .env .env
+      working-directory: .
+      run: cp .env.example .env
 
     - name: Generate app key
+      working-directory: .
       run: php artisan key:generate
 
-    # -------------------------------
-    # Database Setup (SQLite)
-    # -------------------------------
+      # -------------------------------
+      # Database Setup (ROOT)
+      # -------------------------------
     - name: Setup SQLite database
+      working-directory: .
       run: |
         mkdir -p database
         touch database/database.sqlite
         php artisan migrate --force
 
-    # Optional: Seed test users
     - name: Seed database
+      working-directory: .
       run: php artisan db:seed --force
 
-    # -------------------------------
-    # Start Laravel Server
-    # -------------------------------
+      # -------------------------------
+      # Start Laravel Server (ROOT)
+      # -------------------------------
     - name: Start Laravel server
+      working-directory: .
       run: php artisan serve --port=8000 &
-    
+
     - name: Wait for Laravel
       run: npx wait-on http://127.0.0.1:8000
 
-    # -------------------------------
-    # Node + Playwright Setup
-    # -------------------------------
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-
+      # -------------------------------
+      # Playwright Setup (TEST FOLDER)
+      # -------------------------------
     - name: Install NPM dependencies
       working-directory: laravel-playwright-poc
       run: npm install
@@ -71,43 +65,17 @@ jobs:
       working-directory: laravel-playwright-poc
       run: npx playwright install --with-deps
 
-    # -------------------------------
-    # Run Playwright Tests
-    # -------------------------------
+      # -------------------------------
+      # Run Playwright Tests
+      # -------------------------------
     - name: Run Playwright tests
       working-directory: laravel-playwright-poc
       run: npx playwright test --reporter=line
 
-    # -------------------------------
-    # Run BDD Tests
-    # -------------------------------
-  
+      # -------------------------------
+      # Run BDD Tests
+      # -------------------------------
     - name: Run Cucumber BDD Tests
       working-directory: laravel-playwright-poc
-      run: npm run test:bdd 
-
-    # -------------------------------
-    # Upload Playwright HTML Report
-    # -------------------------------
-    - name: Upload Playwright HTML report
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: playwright-report
-        path: laravel-playwright-poc/playwright-report
-        retention-days: 7
-
-    # -------------------------------
-    # Upload Allure Results
-    # -------------------------------
-    - name: Upload Allure results
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: allure-results
-        path: laravel-playwright-poc/allure-results
-        retention-days: 7
-  
-
-
+      run: npm run test:bdd
  
