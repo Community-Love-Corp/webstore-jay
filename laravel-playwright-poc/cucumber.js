@@ -1,12 +1,12 @@
+
 module.exports = {
-	default: {
-		require: ["features/step_definitions/*.ts"],
-		publishQuiet: true,
-		format: [
-			"progress",
-			"json:reports/cucumber-report.json"
-		],
-		paths: ["features/*.feature"],
-		requireModule: ["ts-node/register"]
-	}
-}
+  default: {
+    require: ["features/step_definitions/*.ts"],
+    requireModule: ["ts-node/register"],
+    publishQuiet: true,
+    format: [
+      "progress",
+      "json:./cucumber-report/cucumber.json",
+    ],
+    paths: ["features/*.feature","features/**/*.feature"]  }
+};
