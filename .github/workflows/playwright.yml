@@ -41,11 +41,15 @@ jobs:
     #  - bootstrap/cache/events.php
     # -------------------------------
 
-    - name: Ensure bootstrap/cache exists
+    - name: Ensure Laravel directories exist
       working-directory: .
       run: |
+        mkdir -p storage/framework/cache/data
+        mkdir -p storage/framework/sessions
+        mkdir -p storage/framework/views
+        mkdir -p storage/logs
         mkdir -p bootstrap/cache
-        chmod -R 777 bootstrap/cache storage
+        chmod -R 777 storage bootstrap/cache
 
     - name: Install Composer dependencies
       working-directory: .
