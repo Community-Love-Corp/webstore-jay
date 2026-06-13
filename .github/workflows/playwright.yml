@@ -72,9 +72,9 @@ jobs:
       # -------------------------------
       # Start Laravel Server (ROOT)
       # -------------------------------
-    - name: Start Laravel server
+    - name: Debug Laravel boot
       working-directory: .
-      run: php artisan serve --port=8000 &
+      run: php artisan serve --port=8000 --verbose &
 
     - name: Wait for Laravel
       run: npx wait-on http://127.0.0.1:8000
