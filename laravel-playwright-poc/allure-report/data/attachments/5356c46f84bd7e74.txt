@@ -1,0 +1,1 @@
+/home/jyotirmay/webstore-jay/laravel-playwright-poc/playwright-tests/visual.spec.ts-snapshots/homepage-linux.png does not match, writing actual.

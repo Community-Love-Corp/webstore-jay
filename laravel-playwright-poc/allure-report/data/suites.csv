@@ -1,0 +1,5 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","48","API returns JSON with required fields","","2026-06-13","passed","2026-06-13","User API","api.spec.ts","",""
+"","25","returns correct email value","","2026-06-13","passed","2026-06-13","User API","api.spec.ts","",""
+"","824","Homepage visual snapshot","","2026-06-13","passed","2026-06-13","","visual.spec.ts","",""
+"","4765","Laravel Breeze login works","","2026-06-13","passed","2026-06-13","","login.spec.ts","",""

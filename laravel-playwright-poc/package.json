@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-
     "test:bdd": "cucumber-js"
   },
   "keywords": [],
@@ -14,6 +13,8 @@
   "devDependencies": {
     "@cucumber/cucumber": "^13.0.0",
     "@playwright/test": "^1.60.0",
+    "allure-commandline": "^2.42.1",
+    "allure-playwright": "^3.10.0",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   }
