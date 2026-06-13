@@ -597,3 +597,6 @@ SUNDAY 14 June 2026 19:11 HOURS: Added .github/workflows/laravel.yml and updated
 ## Kali Linux fastcomet-github version 4.12
 SUNDAY 14 June 2026 20:11 HOURS: Added Allure reporting.
 
+## Kali Linux fastcomet-github version 4.13
+SUNDAY 14 June 2026 22:02 HOURS: Updated tsconfig.json, as it was aimed at jest, not Playright. It also did not exclude the test folder, which caused issues when CI was run. 
+

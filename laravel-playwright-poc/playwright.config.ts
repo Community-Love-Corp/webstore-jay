@@ -3,7 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './playwright-tests',
-
+  
   // Run tests in parallel
   fullyParallel: true,
 
@@ -34,6 +34,8 @@ export default defineConfig({
 
     // Capture console logs
     video: 'retain-on-failure',
+	
+	
   },
 
   // Browser configurations

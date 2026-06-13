@@ -1,5 +1,5 @@
 
-{
+/*{
 	"compilerOptions":{
 		"target": "ES2020",
 		"module": "commonjs",
@@ -7,6 +7,24 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"moduleResolution": "node",
-		"types": ["node", "@types/jest"]
+		"types": ["node", "@types/jest"],
+		"exclude":["playwright-tests"]
 	}
+}*/
+
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "types": ["node", "@playwright/test"]
+  },
+  "exclude": [
+    "playwright-tests", 
+    "node_modules"
+  ]
 }
