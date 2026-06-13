@@ -588,6 +588,8 @@ SATURDAY 13 June 2026 16:23 HOURS: Added tests for playright, including feature 
 ## Kali Linux version 4.09
 SUNDAY 14 June 2026 16:23 HOURS: BDD and Playwright tests all working. Git hub integation code present that runs CI pipeline and uploads artefacts. 
 
+ ![App fully operational in Production](./public/screenshots/cucumber-report-json.png)
+
 ## Kali Linux fastcomet-github version 4.10
 SUNDAY 14 June 2026 18:39 HOURS: Updated Readme.md
 
@@ -596,6 +598,8 @@ SUNDAY 14 June 2026 19:11 HOURS: Added .github/workflows/laravel.yml and updated
 
 ## Kali Linux fastcomet-github version 4.12
 SUNDAY 14 June 2026 20:11 HOURS: Added Allure reporting.
+
+ ![App fully operational in Production](./public/screenshots/Allure-report.jpg)
 
 ## Kali Linux fastcomet-github version 4.13
 SUNDAY 14 June 2026 22:02 HOURS: Updated tsconfig.json, as it was aimed at jest, not Playright. It also did not exclude the test folder, which caused issues when CI was run. 
@@ -668,7 +672,19 @@ Run sleep 2
         chmod -R 777 bootstrap/cache storage
  ```
  
+ ![App fully operational in Production](./public/screenshots/Playwright-CI-run.jpg)
+ 
+ ![App fully operational in Production](./public/screenshots/Playwright.jpg)
+ 
  b) Fix to .github/workflows/laravel.yml
  Basically, added the capability to upload test reports to ci artifacts, reusing initial code with playwright.yml.
  
+ ![App fully operational in Production](./public/screenshots/PHPUnit-CI-run.jpg)
  
+ ![App fully operational in Production](./public/screenshots/phpunit-tests.jpg)
+ 
+ 
+## Kali Linux fastcomet-github version 4.17
+SUNDAY 15 June 2026 02:45 HOURS:
+
+Updated Readme.MD with screenshots. 
