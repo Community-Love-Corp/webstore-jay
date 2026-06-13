@@ -76,6 +76,11 @@ jobs:
       working-directory: .
       run: php artisan serve --port=8000 --verbose &
 
+    - name: Test Laravel manually
+      run: |
+        sleep 2
+        curl -v http://127.0.0.1:8000 || true
+
     - name: Wait for Laravel
       run: npx wait-on http://127.0.0.1:8000
 
