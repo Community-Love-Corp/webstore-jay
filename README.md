@@ -609,3 +609,8 @@ fixed ci issues. Updated .github/workflows/playwright.yml's 'Run Playwright Test
         working-directory: laravel-playwright-poc
         run: npx playwright test --reporter=html
 ```
+
+
+## Kali Linux fastcomet-github version 4.15
+SUNDAY 14 June 2026 23:05 HOURS: 
+Updated github/workflows/playwright.yml to setup laravel app as a pre-requisite. 
