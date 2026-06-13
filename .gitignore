@@ -26,3 +26,6 @@ canarylocalbuild_v1.47.zip
 bootstrap/cache/*.php
 #compiled blades
 storage/framework/views/*
+playwright-report/
+test-results/
+allure-results/

@@ -592,4 +592,8 @@ SUNDAY 14 June 2026 16:23 HOURS: BDD and Playwright tests all working. Git hub i
 SUNDAY 14 June 2026 18:39 HOURS: Updated Readme.md
 
 ## Kali Linux fastcomet-github version 4.11
-SUNDAY 14 June 2026 19:11 HOURS: Added .github/workflows/laravel.yml and updated .github/workflows/playwright.yml
+SUNDAY 14 June 2026 19:11 HOURS: Added .github/workflows/laravel.yml and updated .github/workflows/playwright.yml. 
+
+## Kali Linux fastcomet-github version 4.12
+SUNDAY 14 June 2026 20:11 HOURS: Added Allure reporting.
+
