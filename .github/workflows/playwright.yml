@@ -29,7 +29,14 @@ jobs:
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
   
-    - name: Install Dependencies
+    - name: Ensure bootstrap/cache exists
+      working-directory: .
+      run: |
+        mkdir -p bootstrap/cache
+        chmod -R 777 bootstrap/cache
+
+    - name: Install Composer dependencies
+      working-directory: .
       run: composer install --no-interaction --prefer-dist --no-progress
 
     - name: Generate app key
