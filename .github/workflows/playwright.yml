@@ -45,7 +45,7 @@ jobs:
       working-directory: .
       run: |
         mkdir -p bootstrap/cache
-        chmod -R 777 bootstrap/cache
+        chmod -R 777 bootstrap/cache storage
 
     - name: Install Composer dependencies
       working-directory: .
@@ -108,4 +108,27 @@ jobs:
     - name: Run Cucumber BDD Tests
       working-directory: laravel-playwright-poc
       run: npm run test:bdd
+
+      # -------------------------------
+      # Upload Playwright HTML Report
+      # -------------------------------
+    - name: Upload Playwright HTML report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-report
+        path: laravel-playwright-poc/playwright-report
+        retention-days: 7
+
+      # -------------------------------
+      # Upload Allure Results
+      # -------------------------------
+    - name: Upload Allure results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: allure-results
+        path: laravel-playwright-poc/allure-results
+        retention-days: 7
+
  

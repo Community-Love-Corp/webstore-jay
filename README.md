@@ -614,3 +614,57 @@ fixed ci issues. Updated .github/workflows/playwright.yml's 'Run Playwright Test
 ## Kali Linux fastcomet-github version 4.15
 SUNDAY 14 June 2026 23:05 HOURS: 
 Updated github/workflows/playwright.yml to setup laravel app as a pre-requisite. 
+
+## Kali Linux fastcomet-github version 4.15
+SUNDAY 15 June 2026 01:20 HOURS: 
+
+Following code hangs because http://127.0.0.1:8000 returns a HTTP 500 error due to permissions issue:
+
+```
+    - name: Test Laravel manually
+      run: |
+        sleep 2
+        curl -v http://127.0.0.1:8000 || true
+
+    - name: Wait for Laravel
+      run: npx wait-on http://127.0.0.1:8000
+ ```
+ 
+ Error in CI output:
+ 
+ 
+ ```log
+ 3s
+Run sleep 2
+  sleep 2
+  curl -v http://127.0.0.1:8000 || true
+  shell: /usr/bin/bash -e {0}
+  env:
+    COMPOSER_PROCESS_TIMEOUT: 0
+    COMPOSER_NO_INTERACTION: 1
+    COMPOSER_NO_AUDIT: 1
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 127.0.0.1:8000...
+* Connected to 127.0.0.1 (127.0.0.1) port 8000
+> GET / HTTP/1.1
+> Host: 127.0.0.1:8000
+> User-Agent: curl/8.5.0
+> Accept: */*
+> 
+< HTTP/1.1 500 Internal Server Error
+<!-- Please provide a valid cache path. (500 Internal Server Error) -->
+<!DOCTYPE html>
+ ```
+ 
+ Resolved via following step in ci:
+ 
+ ```yaml
+     - name: Ensure bootstrap/cache exists
+      working-directory: .
+      run: |
+        mkdir -p bootstrap/cache
+        chmod -R 777 bootstrap/cache storage
+ ```
+ 
