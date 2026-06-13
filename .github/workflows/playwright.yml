@@ -26,9 +26,21 @@ jobs:
 
     - uses: actions/checkout@v4
 
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-  
+ #   - name: Copy .env
+ #     run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+ 
+    - name: Use CI environment
+      working-directory: .
+      run: cp .env.ci .env
+
+    # -------------------------------
+    #  Laravel needs to write:
+    #  - bootstrap/cache/packages.php
+    #  - bootstrap/cache/services.php
+    #  - bootstrap/cache/config.php
+    #  - bootstrap/cache/events.php
+    # -------------------------------
+
     - name: Ensure bootstrap/cache exists
       working-directory: .
       run: |
