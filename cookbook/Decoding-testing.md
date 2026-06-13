@@ -26,26 +26,66 @@ ProfileTest.php
 
 
 # ⭐ 1. Run ALL tests
+
+## 1.1 Setup for first successful test run 
 From your project root:
 
-Setup HTML reporter 'phpunit/phpunit-printer'. It is the same package Laravel uses to show the pretty CLI test output.
+Setup HTML reporter 'junit-viewer' via node. 
 
 ```
-sudo apt install php-pear
-composer require --dev phpunit/phpunit-printer
+npm install -g junit-viewer
 ```
-Run tests:
+Run tests generating JUnit XML and then covert to html:
 
 ```
-php artisan test --report --min=info
+php artisan test --log-junit junit.xml
+junit-viewer --results=junit.xml --save=report.html
 ```
 
+For Recording CLI Run, create scripts/run-tests.sh:
 
+```bash
+#!/bin/bash
+
+LOGFILE="test-output.txt"
+
+echo "==== Test Run: $(date '+%Y-%m-%d %H:%M:%S') ====" >> "$LOGFILE"
+php artisan test --colors=never >> "$LOGFILE"
+echo "" >> "$LOGFILE"
+```
+
+Call it after every 'npm run build' or before 'npm run dev' operation, via setting up package.json:
+
+```bash
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite",
+        
+        "predev": "bash scripts/run-tests.sh",
+        "postbuild": "bash scripts/run-tests.sh"
+    },
+```
+Look at /home/jyotirmay/webstore-jay/test-output.txt to see html report, or, if you’re inside Sail:
+
+```txt
+==== Test Run: 2026-06-13 11:08:55 ====
+
+   PASS  Tests\Unit\ExampleTest
+  ✓ that true is true
+
+   PASS  Tests\Feature\Auth\AuthenticationTest
+  ✓ login screen can be rendered                                         1.03s  
+  ✓ users can authenticate using the login screen                        0.04s  
+  ✓ users can not authenticate with invalid password                     0.23s  
+  ✓ users can logout                                                     0.03s  
+...
+```
 
 Look at /home/jyotirmay/webstore-jay/report.html to see html report, or, if you’re inside Sail:
 
 ```
-vendor/bin/sail test
+vendor/bin/sail test --log-junit junit.xml
+junit-viewer --results=junit.xml --save=report.html
 ```
 
 Laravel will automatically discover:
@@ -56,6 +96,214 @@ Laravel will automatically discover:
 ---
 
 ![Test Suite Report Screenshot](../public/screenshots/test-suite-report.jpg) 
+
+### 1.1.1 Outcome
+
+16 passed and 6 failed
+
+
+## 1.2 Troubleshoot failing tests
+
+### 1.2.1 Investigate
+
+```
+//Failed 13 June 2026 - test via 'php artisan test --filter test_users_can_authenticate_using_the_login_screen'
+    public function test_users_can_authenticate_using_the_login_screen(): void
+    {
+        $user = User::factory()->create([
+            'password' => bcrypt('password'),   
+        ]);
+
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+        //dd($response->json(), session('errors'));
+        dd([
+            'session_error' => session('errors')?->all(),
+            'response_status' => $response->status(),
+            'response_redirect' => $response->headers->get('Location'),
+            'guard' => auth()->guard()->getName(),
+            'isAuthenticated' => auth()->check(),
+            //'auth_check' => auth()->check(),
+            //'current_user' => auth()->user(),
+        ]);
+
+        $this->assertAuthenticated();
+        $response->assertRedirect(route('dashboard', absolute: false));
+    }
+```
+### 1.2.2 Outcome of Investigation - Recaptcha issue
+
+```
+└─$ php artisan test --filter test_users_can_authenticate_using_the_login_screen  
+array:5 [
+  "session_error" => array:1 [
+    0 => "The g-recaptcha-response field is required."
+  ]
+  "response_status" => 302
+  "response_redirect" => "http://localhost:8000"
+  "guard" => "login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d"
+  "isAuthenticated" => false
+] // tests/Feature/Auth/AuthenticationTest.php:31
+```
+### 1.2.3 Resolution
+
+
+AIM: Disable CAPTCHA in AppServiceProvider when running tests (recommended)
+1. In app/Providers/AppServiceProvider.php:
+
+```php
+public function boot(): void
+{
+    if ($this->app->environment('local')) {
+        config(['captcha.enabled' => false]);
+    }
+}
+```
+
+2. Then in your login validation, wrap your CAPTCHA rule and logic to prevent obtaining captcha input and verifying it from the internet. The latter is also important because the test suite works locally without internet connection. 
+
+Note: In a default Laravel Breeze application, the visual login template is located at resources/views/auth/login.blade.php. The backend logic is handled in app/Http/Controllers/Auth/AuthenticatedSessionController.php, and you can access the page in your browser at /login.
+
+```php
+    /**
+     * Handle an incoming authentication request.
+     */
+    public function store(LoginRequest $request): RedirectResponse
+    {
+        $rules = [
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
+        ];
+        
+        if (config('captcha.enabled')){
+            $rules['g-recaptcha-response'] = 'required';
+        
+            $request->validate($rules);
+            $captcha = $request->input('g-recaptcha-response');
+            
+            
+            
+            $verify = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                
+                'secret' => config('services.recaptcha.secret'),
+                
+                'response' => $captcha,
+                
+            ]);
+            
+            
+            
+            if (!($verify->json()['success'] ?? false)) {
+                
+                return back()
+                
+                ->withInput()
+                
+                ->with('captcha_error', 'Please complete the CAPTCHA test.');
+                
+            }
+        }else{
+            $request->validate($rules);
+        }
+            
+        
+        
+        
+        
+        $request->authenticate();
+
+        $request->session()->regenerate();
+
+        return redirect()->intended(route('dashboard', absolute: false));
+    }
+ ```
+
+Now tests bypass CAPTCHA entirely. Working Debug outcome:
+
+```
+┌──(jyotirmay㉿kali3)-[~/webstore-jay]
+└─$ php artisan test --filter test_users_can_authenticate_using_the_login_screen
+array:7 [
+  "session_error" => null
+  "response_status" => 302
+  "response_redirect" => "http://localhost:8000/dashboard"
+  "guard" => "login_web_59ba36addc2b2f9401580f014c7f58ea4e30989d"
+  "isAuthenticated" => true
+  "auth_check" => true
+  "current_user" => App\Models\User^ {#3010
+    #connection: "mysql"
+    #table: "users"
+    #primaryKey: "id"
+    #keyType: "int"
+    +incrementing: true
+    #with: []
+    #withCount: []
+    +preventsLazyLoading: false
+    #perPage: 15
+    +exists: true
+    +wasRecentlyCreated: false
+    #escapeWhenCastingToString: false
+    #attributes: array:9 [
+      "id" => 1
+      "name" => "Dr. Gregory Parisian II"
+      "email" => "woodrow.bergnaum@example.net"
+      "email_verified_at" => "2026-06-12 22:21:43"
+      "password" => "$2y$04$tKY5.Hu0usu1ynT/dp5KQuqF5MOWeQG1Zyo81fEbR2PJpngsbdxnS"
+      "remember_token" => "5ZzkvnpoBt"
+      "created_at" => "2026-06-12 22:21:43"
+      "updated_at" => "2026-06-12 22:21:43"
+      "is_admin" => 0
+    ]
+    #original: array:9 [
+      "id" => 1
+      "name" => "Dr. Gregory Parisian II"
+      "email" => "woodrow.bergnaum@example.net"
+      "email_verified_at" => "2026-06-12 22:21:43"
+      "password" => "$2y$04$tKY5.Hu0usu1ynT/dp5KQuqF5MOWeQG1Zyo81fEbR2PJpngsbdxnS"
+      "remember_token" => "5ZzkvnpoBt"
+      "created_at" => "2026-06-12 22:21:43"
+      "updated_at" => "2026-06-12 22:21:43"
+      "is_admin" => 0
+    ]
+    #changes: []
+    #previous: []
+    #casts: array:3 [
+      "email_verified_at" => "datetime"
+      "password" => "hashed"
+      "is_admin" => "boolean"
+    ]
+    #classCastCache: []
+    #attributeCastCache: []
+    #dateFormat: null
+    #appends: []
+    #dispatchesEvents: []
+    #observables: []
+    #relations: []
+    #touches: []
+    #relationAutoloadCallback: null
+    #relationAutoloadContext: null
+    +timestamps: true
+    +usesUniqueIds: false
+    #hidden: array:2 [
+      0 => "password"
+      1 => "remember_token"
+    ]
+    #visible: []
+    #fillable: array:3 [
+      0 => "name"
+      1 => "email"
+      2 => "password"
+    ]
+    #guarded: array:1 [
+      0 => "*"
+    ]
+    #authPasswordName: "password"
+    #rememberTokenName: "remember_token"
+  }
+] // tests/Feature/Auth/AuthenticationTest.php:32
+```                                                                                                                                                    
 
 # ⭐ 2. Run only Feature tests
 

@@ -1,6 +1,109 @@
 ---
 
-# Planned Project
+#Laravel + Breeze + MySQL + CMS + Recaptcha2 + PHP Unit + Playwright + Cucumber (BDD) Automation Framework
+
+A complete end‑to‑end automation framework combining:
+
+a. Laravel frontend, backend and api
+
+b. Playwright UI testing
+
+c. Playwright API testing
+
+d. Playwright visual regression
+
+e. Cucumber BDD with TypeScript
+
+f. GitHub Actions CI pipeline
+
+g. HTML reporting
+
+This commercial project demonstrates a modern, production‑grade automation stack suitable for enterprise QA engineering.
+
+
+## Features
+a. UI Automation (Playwright)
+
+i.	Login flow
+
+ii.	Dashboard navigation
+
+iii.	Form interactions
+
+iv.	Assertions and URL checks
+
+v. API Automation
+
+vi.	Tests Laravel API endpoints
+
+vii.	Validates JSON structure
+
+viii.	Status code checks
+
+ix.	Schema validation ready
+
+x. Visual Regression Testing
+
+xi.	Pixel perfect homepage snapshot
+
+xii.	Automatic baseline management
+
+xiii.	Snapshot diffing
+
+xiv. BDD with Cucumber
+
+xv.	Gherkin feature files
+
+xvi.	Step definitions in TypeScript
+
+xvii.	Playwright browser automation inside steps
+
+b. CI/CD with GitHub Actions
+
+i. Installs dependencies
+
+ii.	Installs Playwright browsers
+
+iii.	Runs UI/API/visual tests
+
+iv.	Runs Cucumber tests
+
+v.	Uploads HTML report as artifact
+ 
+ 
+c. Running Tests
+
+c.1 UI/API/Visual tests:
+
+i. npx playwright test --reporter=html
+ii. npx playwright show-report
+iii. BDD tests:
+iv. npm run test:bdd
+
+c.2 PHP Unit and feature tests
+
+Running 'npm run dev' or 'npm run build' already runs them. Check:
+
+i. test-output.txt
+ii. report.html
+
+d. Requirements
+i. 	Node.js 18+
+ii.	PHP 8+
+iii.	Laravel 10/11
+iv.	Playwright
+v.	Cucumber.js
+ 
+e. CI Pipeline
+GitHub Actions workflow runs:
+i.	Playwright tests
+ii.	Cucumber tests
+iii.	Uploads HTML report
+See .github/workflows/playwright.yml.
+
+
+
+## Planned Project High Level Structure
 
 ```
 blog-systematicdefence-tech/
@@ -25,9 +128,43 @@ blog-systematicdefence-tech/
 │
 ├── routes/
 │   └── web.php
-│
+│   └── api.php
 └── .env
+│
+├──Tests
+│   └── TestCase.php
+│   ├── Unit/
+│   |   └── ExampleTest.php
+│   ├── Feature/
+│       ├── ExampleTest.php
+│       └── ProfileTest.php
+│       └──Auth/
+│           ├── AuthenticationTest.php
+│           ├── EmailVerificationTest.php
+│           ├── PasswordConfirmationTest.php
+│           ├── PasswordResetTest.php
+│           ├── PasswordUpdateTest.php
+│           └── RegisterationTest.php
+├──laravel-playwright-poc/
+   │
+   ├── features/
+   │   ├── login.feature
+   │   └── step_definitions/
+   │       └── login.steps.ts
+   │
+   ├── tests/
+   │   ├── api.spec.ts
+   │   ├── login.spec.ts
+   │   └── visual.spec.ts
+   │
+   ├── .github/workflows/playwright.yml
+   ├── cucumber.js
+   ├── package.json
+   ├── tsconfig.json
+   └── playwright.config.ts
 ```
+
+
 
 # Versions
 
@@ -432,3 +569,24 @@ MONDAY 9 June 2026 10:43 HOURS: Updates to humanity.php and life.html. Also iden
 
 ## Kali Linux version 4.05
 WEDNESDAY 10 June 2026 13:52 HOURS: Added fix for directory traversal vulnerability - See cookbook/security-hardening.md for evidence. 
+
+## Kali Linux version 4.06
+FRIDAY 12 June 2026 17:53 HOURS: Added HTML reporting of tests - See Cookbook/Decoding-testing.md STEP 1. 
+
+## Kali Linux version 4.07
+FRIDAY 12 June 2026 08:56 HOURS: Fixed tests:
+
+- 'tests/Feature/Auth/AuthenticateTest.php' >  'public function test_users_can_authenticate_using_the_login_screen(): void'
+
+See Decoding-testing.md Section 1.2 'Troubleshoot failing tests'.
+
+Also improved reporting. Also  Decoding-testing.md ## 1.1 Setup for first successful test run. 
+
+## Kali Linux version 4.08
+SATURDAY 13 June 2026 16:23 HOURS: Added tests for playright, including feature file. Turned subfolder laravel-playwright-poc into a project in its own right. 
+
+## Kali Linux version 4.09
+SUNDAY 14 June 2026 16:23 HOURS: BDD and Playwright tests all working. Git hub integation code present that runs CI pipeline and uploads artefacts. 
+
+## Kali Linux fastcomet-github version 4.10
+SUNDAY 14 June 2026 18:39 HOURS: Updated Readme.md

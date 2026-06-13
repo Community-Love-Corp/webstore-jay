@@ -25,36 +25,42 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->validate([
+        $rules = [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
-            'g-recaptcha-response' => ['required'],
-        ]);
+        ];
         
-        $captcha = $request->input('g-recaptcha-response');
+        if (config('captcha.enabled')){
+            $rules['g-recaptcha-response'] = 'required';
         
-        
-        
-        $verify = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+            $request->validate($rules);
+            $captcha = $request->input('g-recaptcha-response');
             
-            'secret' => config('services.recaptcha.secret'),
             
-            'response' => $captcha,
             
-        ]);
-        
-        
-        
-        if (!($verify->json()['success'] ?? false)) {
+            $verify = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', [
+                
+                'secret' => config('services.recaptcha.secret'),
+                
+                'response' => $captcha,
+                
+            ]);
             
-            return back()
             
-            ->withInput()
             
-            ->with('captcha_error', 'Please complete the CAPTCHA test.');
-            
+            if (!($verify->json()['success'] ?? false)) {
+                
+                return back()
+                
+                ->withInput()
+                
+                ->with('captcha_error', 'Please complete the CAPTCHA test.');
+                
+            }
+        }else{
+            $request->validate($rules);
         }
-        
+            
         
         
         
