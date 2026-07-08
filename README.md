@@ -206,3 +206,12 @@ Added Section 4.0 Setup.
 Thu 8 July 10:23 HOURS: 
 
 Added laravel-playwright-poc/tests/basics.ts.
+
+## 1.03
+
+
+Thu 8 July 10:43 HOURS: 
+
+First test passes in ui.spec.ts. Test run via command 'npx playwright test ui.spec.ts --ui':
+
+![First UI test passes](./public/screenshots/first-test.jpg)
