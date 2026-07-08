@@ -200,3 +200,9 @@ Branch initialised for testing from "branch fastcomet's Kali Linux version 4.17 
 Thu 8 July 08:30 HOURS: 
 
 Added Section 4.0 Setup.
+
+## 1.02
+
+Thu 8 July 10:23 HOURS: 
+
+Added laravel-playwright-poc/tests/basics.ts.
