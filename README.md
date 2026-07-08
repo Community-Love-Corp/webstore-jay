@@ -2,6 +2,8 @@
 
 #Laravel + Breeze + MySQL + CMS + Recaptcha2 + PHP Unit + Playwright + Cucumber (BDD) Automation Framework
 
+## 1.0 Summary
+
 A complete end‑to‑end automation framework combining:
 
 a. Laravel frontend, backend and api
@@ -21,8 +23,8 @@ g. HTML reporting
 This commercial project demonstrates a modern, production‑grade automation stack suitable for enterprise QA engineering.
 
 
-## Features
-a. UI Automation (Playwright)
+## 2.0 Features
+### 2.1 UI Automation (Playwright)
 
 i.	Login flow
 
@@ -58,7 +60,7 @@ xvi.	Step definitions in TypeScript
 
 xvii.	Playwright browser automation inside steps
 
-b. CI/CD with GitHub Actions
+### 2.2 CI/CD with GitHub Actions
 
 i. Installs dependencies
 
@@ -71,30 +73,30 @@ iv.	Runs Cucumber tests
 v.	Uploads HTML report as artifact
  
  
-c. Running Tests
+### 2.3 Running Tests
 
-c.1 UI/API/Visual tests:
+#### 2.3.1 UI/API/Visual tests:
 
 i. npx playwright test --reporter=html
 ii. npx playwright show-report
 iii. BDD tests:
 iv. npm run test:bdd
 
-c.2 PHP Unit and feature tests
+#### 2.3.2 PHP Unit and feature tests
 
 Running 'npm run dev' or 'npm run build' already runs them. Check:
 
 i. test-output.txt
 ii. report.html
 
-d. Requirements
+### 2.4 Requirements
 i. 	Node.js 18+
 ii.	PHP 8+
 iii.	Laravel 10/11
 iv.	Playwright
 v.	Cucumber.js
  
-e. CI Pipeline
+### 2.5 CI Pipeline
 GitHub Actions workflow runs:
 i.	Playwright tests
 ii.	Cucumber tests
@@ -103,7 +105,7 @@ See .github/workflows/playwright.yml.
 
 
 
-## Planned Project High Level Structure
+## 3.0 Project Structure
 
 ```
 blog-systematicdefence-tech/
@@ -164,13 +166,37 @@ blog-systematicdefence-tech/
    └── playwright.config.ts
 ```
 
+# 4.0 Setup
+
+Pre-Req : Install XAMPP/ LAMPP for your PC's OS
+
+1. Terminal #1 (Assuming Linux)
+
+```
+sudo /opt/lampp/manager-linux-x64.run
+```
+Start MySQL and Apache Servers
+
+2. Terminal #2
+
+```
+cd webstore-jay
+php artisan migrate:fresh --seed
+php artisan serve
+
+```
+
+# 5.0 Versions
 
 
-# Versions
-
-
-## 1.0
+## 1.00
 
 Thu 8 July 07:47 HOURS: 
 
 Branch initialised for testing from "branch fastcomet's Kali Linux version 4.17 - Sun Jun 14 02:42:30 2026 +1200".
+
+## 1.01
+
+Thu 8 July 08:30 HOURS: 
+
+Added Section 4.0 Setup.
