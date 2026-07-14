@@ -1,5 +1,6 @@
 //install: npm install express 
 //run: node server.js
+//Note: when the laravel app is run on port 8000, this automatically runs on port 8000
 
 const express = require('express');
 
@@ -16,5 +17,5 @@ app.get('/api/user', (req, res) => {
 });
 
 app.listen(port, () => {
-	console.log('Mock API server running at http://127.0.0.1:${port}');
+	console.log('Mock API server running at http://127.0.0.1: ${port}');
 });

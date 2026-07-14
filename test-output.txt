@@ -1256,3 +1256,142 @@ Failed asserting that false is true.
   Duration: 7.43s
 
 
+==== Test Run: 2026-07-14 18:20:53 ====
+
+   PASS  Tests\Unit\ExampleTest
+  ✓ that true is true
+
+   PASS  Tests\Feature\Auth\AuthenticationTest
+  ✓ login screen can be rendered                                         0.87s  
+  ✓ users can authenticate using the login screen                        0.06s  
+  ✓ users can not authenticate with invalid password                     0.25s  
+  ✓ users can logout                                                     0.03s  
+
+   PASS  Tests\Feature\Auth\EmailVerificationTest
+  ✓ email verification screen can be rendered                            0.03s  
+  ✓ email can be verified                                                0.03s  
+  ✓ email is not verified with invalid hash                              0.03s  
+
+   PASS  Tests\Feature\Auth\PasswordConfirmationTest
+  ✓ confirm password screen can be rendered                              0.03s  
+  ✓ password can be confirmed                                            0.96s  
+  ✓ password is not confirmed with invalid password                      0.24s  
+
+   FAIL  Tests\Feature\Auth\PasswordResetTest
+  ✓ reset password link screen can be rendered                           0.02s  
+  ⨯ reset password link can be requested                                 0.92s  
+  ⨯ reset password screen can be rendered                                0.69s  
+  ⨯ password can be reset with valid token                               0.72s  
+
+   FAIL  Tests\Feature\Auth\PasswordUpdateTest
+  ⨯ password can be updated                                              0.94s  
+  ✓ correct password must be provided to update password                 0.02s  
+
+   FAIL  Tests\Feature\Auth\RegistrationTest
+  ✓ registration screen can be rendered                                  0.02s  
+  ⨯ new users can register                                               0.91s  
+
+   PASS  Tests\Feature\ExampleTest
+  ✓ the application returns a successful response                        0.03s  
+
+   PASS  Tests\Feature\ProfileTest
+  ✓ profile page is displayed                                            0.04s  
+  ✓ profile information can be updated                                   0.03s  
+  ✓ email verification status is unchanged when the email address is un… 0.03s  
+  ✓ user can delete their account                                        0.02s  
+  ✓ correct password must be provided to delete account                  0.03s  
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Auth\PasswordResetTest > reset password link can be…   
+  The expected [Illuminate\Auth\Notifications\ResetPassword] notification was not sent.
+Failed asserting that false is true.
+
+  at vendor/laravel/framework/src/Illuminate/Support/Testing/Fakes/NotificationFake.php:89
+     85▕         if (is_numeric($callback)) {
+     86▕             return $this->assertSentToTimes($notifiable, $notification, $callback);
+     87▕         }
+     88▕ 
+  ➜  89▕         PHPUnit::assertTrue(
+     90▕             $this->sent($notifiable, $notification, $callback)->count() > 0,
+     91▕             "The expected [{$notification}] notification was not sent."
+     92▕         );
+     93▕     }
+
+      [2m+2 vendor frames [22m
+  3   tests/Feature/Auth/PasswordResetTest.php:30
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Auth\PasswordResetTest > reset password screen can…    
+  The expected [Illuminate\Auth\Notifications\ResetPassword] notification was not sent.
+Failed asserting that false is true.
+
+  at vendor/laravel/framework/src/Illuminate/Support/Testing/Fakes/NotificationFake.php:89
+     85▕         if (is_numeric($callback)) {
+     86▕             return $this->assertSentToTimes($notifiable, $notification, $callback);
+     87▕         }
+     88▕ 
+  ➜  89▕         PHPUnit::assertTrue(
+     90▕             $this->sent($notifiable, $notification, $callback)->count() > 0,
+     91▕             "The expected [{$notification}] notification was not sent."
+     92▕         );
+     93▕     }
+
+      [2m+2 vendor frames [22m
+  3   tests/Feature/Auth/PasswordResetTest.php:41
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Auth\PasswordResetTest > password can be reset with…   
+  The expected [Illuminate\Auth\Notifications\ResetPassword] notification was not sent.
+Failed asserting that false is true.
+
+  at vendor/laravel/framework/src/Illuminate/Support/Testing/Fakes/NotificationFake.php:89
+     85▕         if (is_numeric($callback)) {
+     86▕             return $this->assertSentToTimes($notifiable, $notification, $callback);
+     87▕         }
+     88▕ 
+  ➜  89▕         PHPUnit::assertTrue(
+     90▕             $this->sent($notifiable, $notification, $callback)->count() > 0,
+     91▕             "The expected [{$notification}] notification was not sent."
+     92▕         );
+     93▕     }
+
+      [2m+2 vendor frames [22m
+  3   tests/Feature/Auth/PasswordResetTest.php:58
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Auth\PasswordUpdateTest > password can be updated      
+  Failed asserting that false is true.
+
+  at tests/Feature/Auth/PasswordUpdateTest.php:31
+     27▕         $response
+     28▕             ->assertSessionHasNoErrors()
+     29▕             ->assertRedirect('/profile');
+     30▕ 
+  ➜  31▕         $this->assertTrue(Hash::check('new-password', $user->refresh()->password));
+     32▕     }
+     33▕ 
+     34▕     public function test_correct_password_must_be_provided_to_update_password(): void
+     35▕     {
+
+  1   tests/Feature/Auth/PasswordUpdateTest.php:31
+
+  ────────────────────────────────────────────────────────────────────────────  
+   FAILED  Tests\Feature\Auth\RegistrationTest > new users can register         
+  The user is not authenticated
+Failed asserting that false is true.
+
+  at tests/Feature/Auth/RegistrationTest.php:28
+     24▕             'password' => 'password',
+     25▕             'password_confirmation' => 'password',
+     26▕         ]);
+     27▕ 
+  ➜  28▕         $this->assertAuthenticated();
+     29▕         $response->assertRedirect(route('dashboard', absolute: false));
+     30▕     }
+     31▕ }
+     32▕
+
+
+  Tests:    5 failed, 20 passed (55 assertions)
+  Duration: 7.07s
+
+

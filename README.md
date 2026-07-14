@@ -283,3 +283,17 @@ First test passes in ui.spec.ts. Test run via command 'npx playwright test ui.sp
 Thu 8 July 11:07 HOURS: 
 
 Added node_modules folder of base and test sub folders to .gitignore and removed them from git cache, inorder to enable commit of this branch- 'git rm -r --cached laravel-playwright-poc/node_modules'. 
+
+
+## 1.05
+
+
+Tue 14 July 18:43 HOURS: 
+
+Ran node server.js to run the endpoint at http://127.0.0.1:8001/api/user. Added stub.spec.ts that holds a test that stubs the outcome of the call http://127.0.0.1:8001/api/user and verified that it works.
+
+## 2.0
+
+Wed 15 July: 
+
+Setup base_url in playwright.config.ts. Login Fixture working with pagemodel implementation of login page and dashboard page. All Playwright tests passing.

@@ -1,7 +1,14 @@
 
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+import path from 'path';
+
+// Load Environment variables from .env file
+dotenv.config({ path: path.resolve(__dirname, '.env')});
 
 export default defineConfig({
+
+	
   testDir: './tests',
   
   // Run tests in parallel
@@ -23,6 +30,10 @@ export default defineConfig({
   ],
 
   use: {
+	
+	// Fallback to local if variable is missing
+	baseURL: process.env.Base_URL || "http://127.0.0.1:8000",
+	
     // Always run headless in CI
     headless: true,
 
